@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://musicits.github.io/sitemap.xml
+Sitemap: https://musicits.github.io/codec-match/sitemap.xml

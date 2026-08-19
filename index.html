@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>music ITs — 웹 도구 모음</title>
+    <meta name="description" content="쭈뉘의 뮤직잇츠가 만든 웹 도구 모음입니다. 블루투스 코덱 호환 확인 도구 '코덱 매치'를 비롯한 도구를 모아둡니다." />
+    <link rel="canonical" href="https://musicits.github.io/" />
+    <meta name="author" content="쭈뉘의 뮤직잇츠 music ITs" />
+    <link rel="me" href="https://blog.naver.com/musicits" />
+    <meta name="naver-site-verification" content="9d24f56b7b867cc05a1bf17733ef242f072229c0" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="music ITs — 웹 도구 모음" />
+    <meta property="og:description" content="쭈뉘의 뮤직잇츠가 만든 웹 도구 모음입니다." />
+    <meta property="og:url" content="https://musicits.github.io/" />
+    <meta property="og:site_name" content="music ITs" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "music ITs",
+        "url": "https://musicits.github.io/",
+        "inLanguage": "ko",
+        "author": {
+          "@type": "Person",
+          "name": "쭈뉘의 뮤직잇츠 music ITs",
+          "url": "https://blog.naver.com/musicits",
+          "sameAs": [
+            "https://blog.naver.com/musicits",
+            "https://github.com/musicits"
+          ]
+        }
+      }
+    </script>
+    <style>
+      @import "https://fonts.googleapis.com/css2?family=DM+Mono&family=Noto+Sans+KR:wght@400;500;600;700&display=swap";
+
+      :root {
+        --color-primary: #dffb51;
+        --color-bg: #101210;
+        --color-surface: #1b1f1b;
+        --color-text: #f5f5ee;
+        --color-muted: #9ba39b;
+        --color-accent: #87e7d1;
+        --line: #363c36;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: radial-gradient(circle at 90% 4%, rgba(135, 231, 209, .13), transparent 28rem), var(--color-bg);
+        color: var(--color-text);
+        font-family: Noto Sans KR, sans-serif;
+        font-size: 15px;
+      }
+
+      header, main, footer { width: min(100%, 780px); margin: auto; }
+
+      header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 28px 20px 25px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .mark { color: var(--color-primary); font-size: 35px; line-height: 1; }
+
+      .eyebrow {
+        font-family: DM Mono, monospace;
+        letter-spacing: .08em;
+        color: var(--color-accent);
+        font-size: 11px;
+        text-transform: uppercase;
+        margin: 0 0 6px;
+      }
+
+      h1 { margin: 0; font-size: 24px; letter-spacing: -.05em; }
+
+      main { padding: 40px 20px 52px; }
+      .intro { color: var(--color-muted); line-height: 1.75; margin: 0 0 32px; font-size: 14px; }
+
+      .tool {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        background: var(--color-surface);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 22px;
+        box-shadow: 0 18px 45px rgba(0, 0, 0, .22);
+        transition: border-color .15s, transform .15s;
+      }
+
+      .tool:hover { border-color: var(--color-primary); transform: translateY(-2px); }
+      .tool h2 { margin: 0 0 8px; font-size: 20px; letter-spacing: -.03em; color: var(--color-primary); }
+      .tool p { margin: 0; color: var(--color-muted); font-size: 13px; line-height: 1.7; }
+
+      .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+      .chips span {
+        padding: 5px 8px;
+        border-radius: 99px;
+        border: 1px solid var(--line);
+        color: #c9d0c9;
+        font-family: DM Mono, monospace;
+        font-size: 11px;
+      }
+
+      footer {
+        border-top: 1px solid var(--line);
+        padding: 20px;
+        color: #697169;
+        font-family: DM Mono, monospace;
+        font-size: 10px;
+        text-align: center;
+      }
+
+      footer p { margin: 0; }
+      footer p + p { margin-top: 7px; }
+
+      footer a {
+        color: var(--color-accent);
+        text-decoration: none;
+        border-bottom: 1px solid rgba(135, 231, 209, .35);
+      }
+
+      footer a:hover { color: var(--color-primary); border-bottom-color: var(--color-primary); }
+
+      @media (min-width: 640px) {
+        header { padding-inline: 32px; }
+        main { padding: 52px 32px 64px; }
+        h1 { font-size: 28px; }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="mark" aria-hidden="true">⌁</div>
+      <div>
+        <p class="eyebrow">MUSIC ITS</p>
+        <h1>웹 도구 모음</h1>
+      </div>
+    </header>
+
+    <main>
+      <p class="intro">
+        쭈뉘의 뮤직잇츠가 만든 도구를 모아둡니다.<br />
+        오디오와 IT 기기를 다루면서 필요했던 것들을 직접 만들어 공개합니다.
+      </p>
+
+      <a class="tool" href="./codec-match/">
+        <h2>코덱 매치 →</h2>
+        <p>
+          스마트폰과 이어폰·헤드폰을 고르면 두 기기가 실제로 협상할 것으로 예상되는
+          블루투스 코덱과 최대 비트레이트, 지연시간을 알려줍니다.
+        </p>
+        <div class="chips">
+          <span>SBC</span><span>AAC</span><span>aptX</span><span>aptX HD</span>
+          <span>aptX Adaptive</span><span>LDAC</span><span>LHDC</span><span>SSC</span><span>LC3</span>
+        </div>
+      </a>
+    </main>
+
+    <footer>
+      <p>MUSIC ITS</p>
+      <p>
+        만든이
+        <a href="https://blog.naver.com/musicits" target="_blank" rel="author noopener">
+          쭈뉘의 뮤직잇츠 music ITs
+        </a>
+      </p>
+    </footer>
+  </body>
+</html>
