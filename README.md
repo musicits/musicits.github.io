@@ -1,6 +1,6 @@
 # musicits.github.io
 
-`https://musicits.github.io/` 루트를 서빙하는 저장소입니다.
+`https://tools.musicits.com/` 루트를 서빙하는 저장소입니다.
 
 - `index.html` — 도구 모음 랜딩 페이지
 - `naver79034692a7a496d9ff4b2c3ba5994dfd.html` — 네이버 서치어드바이저 소유확인 파일 (지우지 마세요)
