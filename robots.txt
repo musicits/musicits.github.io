@@ -3,3 +3,4 @@ Allow: /
 
 Sitemap: https://tools.musicits.com/sitemap.xml
 Sitemap: https://tools.musicits.com/codec-match/sitemap.xml
+Sitemap: https://tools.musicits.com/phone-mockup-studio/sitemap.xml
