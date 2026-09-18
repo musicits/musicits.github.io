@@ -1,0 +1,50 @@
+/* music ITs 도구 공통 머리말.
+ *
+ * 코덱 매치 · 폰 목업 스튜디오 · 매거진 커버 메이커 · 사진기능사 문제은행,
+ * 그리고 이 도구 모음 첫 화면까지 다섯 곳이 이 한 파일을 함께 씁니다.
+ *
+ * 색은 각 도구가 제 토큰으로 칠합니다. 여기에는 '어긋나면 눈에 띄는 치수'만
+ * 둡니다 — 머리말 높이(63px)를 만드는 값들입니다. 한 곳만 고치면 다섯이
+ * 같이 바뀌므로, 예전처럼 어디는 63px 어디는 65px 이 되는 일이 없습니다.
+ *
+ * 각 도구의 스타일 뒤에 불러야 이깁니다 (<head> 맨 끝).
+ */
+
+/* 머리말 — 안쪽 여백과 줄 간격 */
+.topbar {
+  padding: 14px 24px;
+  gap: 8px 16px;
+  align-items: center;
+}
+
+/* 로고 — 26px 고정. 여기서 키가 갈리면 머리말 전체가 흔들립니다 */
+.topbar .logo { height: 26px; width: auto; }
+
+/* 도구 이름과 한 줄 설명 */
+.topbar h1, .topbar .name { font-size: 16px; font-weight: 600; }
+.topbar p, .topbar .desc { font-size: 13px; }
+
+/* 오른쪽 묶음 — 테마 고르기·블로그·도구 단추가 서는 자리 */
+.topbar .right, .topbar__right {
+  margin-left: auto;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 테마 고르기 — 테두리 1px + 여백 2px + 단추 28px = 34px */
+.topbar .seg { padding: 2px; gap: 2px; border-radius: 999px; }
+.topbar .seg button { height: 28px; padding: 0 11px; border-radius: 999px;
+  font-size: 12.5px; font-weight: 600; }
+
+/* 알약 단추 (블로그 · 도구 · 도움말) — 테마 고르기와 같은 34px */
+.topbar .pill, .topbar__blog, .toolswitch__btn {
+  height: 34px; padding: 0 13px; border-radius: 999px;
+  font-size: 12.5px; font-weight: 700;
+}
+
+@media (max-width: 900px) {
+  .topbar { padding: 12px 16px; }
+  .topbar .logo { height: 19px; }
+}
