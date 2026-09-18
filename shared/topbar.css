@@ -44,6 +44,83 @@
   font-size: 12.5px; font-weight: 700;
 }
 
+/* 로고와 도구 이름은 누를 수 있습니다 — 로고는 도구 모음 첫 화면, 이름은 그 도구 첫 화면 */
+:root .logo-link { display: block; flex: 0 0 auto; border-radius: 6px; line-height: 0;
+  transition: opacity .18s ease, transform .18s cubic-bezier(.16, 1, .3, 1); }
+:root .logo-link:hover { opacity: .72; }
+:root .logo-link:active { transform: scale(.96); }
+:root .topbar h1 a, :root header h1 a, :root .topbar .name a {
+  color: inherit; text-decoration: none;
+  transition: opacity .18s ease, transform .18s cubic-bezier(.16, 1, .3, 1); }
+:root .topbar h1 a:hover, :root header h1 a:hover, :root .topbar .name a:hover { opacity: .68; }
+
+/* ---- 머리말 도구 전환기 ---- */
+/* 머리말 오른쪽 묶음 — 블로그 · 도구. 도구 모음 첫 화면과 같은 자리입니다. */
+:root .topbar__blog {
+  display: inline-flex; align-items: center; padding: 6px 13px; border-radius: 999px;
+  font-size: 12.5px; font-weight: 700; color: var(--steel, var(--tx, #6b7280)); text-decoration: none;
+  background: color-mix(in srgb, var(--canvas, var(--field, #fff)) 62%, transparent);
+  border: 1px solid var(--glass-hairline, var(--line, rgba(20, 35, 60, .12)));
+  transition: color .18s ease, border-color .18s ease, transform .18s cubic-bezier(.16, 1, .3, 1);
+}
+:root .topbar__blog:hover { color: var(--main-deep, var(--acc, #2b3a55)); border-color: color-mix(in srgb, var(--main, var(--acc, #2b3a55)) 40%, transparent); }
+:root .topbar__blog:active { transform: scale(.96); }
+:root .toolswitch { position: relative; flex: 0 0 auto; }
+:root .toolswitch__btn {
+  display: inline-flex; align-items: center; gap: 6px; height: 34px; padding: 0 13px; border-radius: 999px;
+  font-size: 12.5px; font-weight: 600; color: var(--slate); cursor: pointer;
+  background: color-mix(in srgb, var(--canvas, var(--field, #fff)) 70%, transparent);
+  border: 1px solid var(--glass-hairline, var(--line, rgba(20, 35, 60, .12))); box-shadow: var(--glass-rim, inset 0 1px 0 rgba(255, 255, 255, .35));
+}
+:root .toolswitch__btn:hover { color: var(--main-deep, var(--acc, #2b3a55)); border-color: color-mix(in srgb, var(--main, var(--acc, #2b3a55)) 40%, transparent); }
+/* 결과 판과 같은 유리 — 두 겹 테두리에 모서리로 뭉치는 빛까지 */
+:root .toolswitch__menu {
+  position: absolute; right: 0; top: calc(100% + 10px); width: 300px; padding: 10px; z-index: 40;
+  isolation: isolate; border-radius: var(--r-outer, 24px);
+  /* 목록 글자가 뒤 화면과 겹치면 못 읽습니다 — 유리는 두되 뒤는 확실히 흩뜨립니다 */
+  background: color-mix(in srgb, Canvas 95%, transparent);
+  -webkit-backdrop-filter: saturate(200%) blur(40px); backdrop-filter: saturate(200%) blur(40px);
+  border: 1px solid var(--glass-hairline, var(--line, rgba(20, 35, 60, .12))); border-top-color: var(--glass-sheen, rgba(255, 255, 255, .55));
+  box-shadow: var(--glass-rim, inset 0 1px 0 rgba(255, 255, 255, .35)), var(--glass-drop, 0 18px 40px -22px rgba(20, 35, 60, .45));
+  animation: menupop .2s cubic-bezier(.16, 1, .3, 1);
+  transform-origin: 100% 0;
+}
+:root .toolswitch__menu::before {
+  content: ""; position: absolute; inset: 0 0 auto 0; height: 110px; border-radius: inherit;
+  z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(120% 60% at 12% 0%, var(--glass-sheen, rgba(255, 255, 255, .55)), transparent 62%),
+    linear-gradient(180deg, color-mix(in srgb, var(--glass-sheen, rgba(255, 255, 255, .55)) 62%, transparent), transparent 24%);
+}
+@supports (corner-shape: squircle) { :root .toolswitch__menu { corner-shape: squircle; border-radius: 26px; } }
+@keyframes menupop { from { opacity: 0; transform: translateY(-6px) scale(.97); } }
+@media (prefers-reduced-motion: reduce) { .toolswitch__menu { animation: none; } }
+
+/* 머리말 — 이름 옆에 도구 개수를 작게 */
+:root .toolswitch__label { margin: 6px 10px 10px; display: flex; align-items: center; gap: 7px;
+  font-size: 11px; font-weight: 700; letter-spacing: .02em; color: var(--steel, var(--tx, #6b7280)); text-transform: none; }
+:root .toolswitch__label span { padding: 1px 7px; border-radius: 999px; font-size: 10.5px; font-weight: 800;
+  color: var(--main-deep, var(--acc, #2b3a55)); background: var(--tint, color-mix(in srgb, var(--acc, #2b3a55) 12%, transparent)); }
+:root .toolswitch__label::after { content: ""; flex: 1 1 auto; height: 1px;
+  background: linear-gradient(90deg, var(--line, rgba(20, 35, 60, .10)), transparent); }
+:root .toolswitch__item {
+  display: grid; grid-template-columns: 18px minmax(0, 1fr); align-items: start; gap: 10px;
+  padding: 9px 10px; border-radius: var(--r-md, 10px); color: var(--ink, var(--tx, #16181d)); text-decoration: none;
+}
+:root .toolswitch__item:hover { background: color-mix(in srgb, CanvasText 7%, transparent); }
+:root .toolswitch__item.on { background: var(--tint, color-mix(in srgb, var(--acc, #2b3a55) 12%, transparent)); color: var(--main-deep, var(--acc, #2b3a55)); }
+:root .toolswitch__item b { display: block; font-size: 13px; }
+:root .toolswitch__item em { display: block; margin-top: 2px; font-style: normal; font-size: 11.5px; line-height: 1.5;
+  color: var(--steel, var(--tx, #6b7280)); word-break: keep-all; }
+:root .toolswitch__here { grid-column: 2; margin-top: 4px; font-size: 11px; font-weight: 700; color: var(--main-deep, var(--acc, #2b3a55)); }
+/* 목록 아래 — 도구 모음 첫 화면 한 줄 */
+:root .toolswitch__home { margin-top: 8px; display: flex; align-items: center; gap: 8px;
+  padding: 9px 10px; border-radius: var(--r-md, 10px); text-decoration: none;
+  font-size: 12.5px; font-weight: 700; color: var(--steel, var(--tx, #6b7280));
+  border-top: 1px solid var(--line, rgba(20, 35, 60, .10)); border-radius: 0 0 var(--r-md, 10px) var(--r-md, 10px);
+  transition: color .18s ease, background-color .18s ease; }
+:root .toolswitch__home:hover { color: var(--main-deep, var(--acc, #2b3a55)); background: color-mix(in srgb, CanvasText 7%, transparent); }
+
 @media (max-width: 900px) {
   :root .topbar { padding: 12px 16px; }
   :root .topbar .logo { height: 19px; }
