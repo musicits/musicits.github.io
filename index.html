@@ -2,175 +2,708 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>music ITs — 웹 도구 모음</title>
-    <meta name="description" content="쭈뉘의 뮤직잇츠가 만든 웹 도구 모음입니다. 블루투스 코덱 호환 확인 도구 '코덱 매치'를 비롯한 도구를 모아둡니다." />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>music ITs 웹 도구 모음 — 블루투스 코덱 호환 확인 · 폰 목업 · 매거진 커버 · 사진기능사 필기</title>
+    <meta
+      name="description"
+      content="쭈뉘의 뮤직잇츠가 만든 무료 웹 도구 모음입니다. 블루투스 코덱 호환 확인(코덱 매치), 아이폰·갤럭시 스크린샷 목업, 매거진 표지 메이커, 사진기능사 필기 예상문제를 설치도 로그인도 없이 브라우저에서 바로 씁니다."
+    />
     <link rel="canonical" href="https://tools.musicits.com/" />
     <meta name="author" content="쭈뉘의 뮤직잇츠 music ITs" />
     <link rel="me" href="https://blog.naver.com/musicits" />
     <meta name="naver-site-verification" content="9d24f56b7b867cc05a1bf17733ef242f072229c0" />
+    <meta name="theme-color" content="#0d0f0d" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f6f7f3" media="(prefers-color-scheme: light)" />
+    <meta name="color-scheme" content="dark light" />
+
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="music ITs — 웹 도구 모음" />
-    <meta property="og:description" content="쭈뉘의 뮤직잇츠가 만든 웹 도구 모음입니다." />
+    <meta property="og:title" content="music ITs 웹 도구 모음" />
+    <meta
+      property="og:description"
+      content="블루투스 코덱 호환 확인 · 아이폰/갤럭시 스크린샷 목업 · 매거진 표지 메이커 · 사진기능사 필기 예상문제. 설치도 로그인도 없이 브라우저에서 바로."
+    />
     <meta property="og:url" content="https://tools.musicits.com/" />
     <meta property="og:site_name" content="music ITs" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:image" content="https://tools.musicits.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230d0f0d'/%3E%3Cpath d='M18.5 5 9 18h6l-1.5 9L23 14h-6z' fill='%23dffb51'/%3E%3C/svg%3E" />
+
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "music ITs",
-        "url": "https://tools.musicits.com/",
-        "inLanguage": "ko",
-        "author": {
-          "@type": "Person",
-          "name": "쭈뉘의 뮤직잇츠 music ITs",
-          "url": "https://blog.naver.com/musicits",
-          "sameAs": [
-            "https://blog.naver.com/musicits",
-            "https://github.com/musicits"
-          ]
-        }
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://tools.musicits.com/#website",
+            "name": "music ITs 웹 도구 모음",
+            "url": "https://tools.musicits.com/",
+            "inLanguage": "ko",
+            "publisher": { "@id": "https://tools.musicits.com/#person" }
+          },
+          {
+            "@type": "Person",
+            "@id": "https://tools.musicits.com/#person",
+            "name": "쭈뉘의 뮤직잇츠 music ITs",
+            "url": "https://blog.naver.com/musicits",
+            "sameAs": ["https://blog.naver.com/musicits", "https://github.com/musicits"]
+          },
+          {
+            "@type": "ItemList",
+            "name": "music ITs 웹 도구",
+            "itemListOrder": "https://schema.org/ItemListOrderAscending",
+            "numberOfItems": 4,
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "item": {
+                  "@type": "WebApplication",
+                  "name": "코덱 매치 — 블루투스 코덱 호환 확인",
+                  "url": "https://tools.musicits.com/codec-match/",
+                  "applicationCategory": "UtilitiesApplication",
+                  "operatingSystem": "Web",
+                  "inLanguage": "ko",
+                  "description": "스마트폰과 이어폰·헤드폰을 고르면 두 기기가 실제로 협상할 블루투스 코덱과 최대 비트레이트·지연시간을 알려줍니다.",
+                  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" }
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "item": {
+                  "@type": "WebApplication",
+                  "name": "폰 목업 스튜디오 — 아이폰·갤럭시 스크린샷 목업",
+                  "url": "https://tools.musicits.com/phone-mockup-studio/",
+                  "applicationCategory": "DesignApplication",
+                  "operatingSystem": "Web",
+                  "inLanguage": "ko",
+                  "description": "스크린샷을 아이폰·갤럭시 프레임에 합성해 PNG로 저장합니다.",
+                  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" }
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "item": {
+                  "@type": "WebApplication",
+                  "name": "매거진 커버 메이커 — 사진으로 잡지 표지 만들기",
+                  "url": "https://tools.musicits.com/magazine-cover-maker/",
+                  "applicationCategory": "DesignApplication",
+                  "operatingSystem": "Web",
+                  "inLanguage": "ko",
+                  "description": "사진을 끌어다 놓으면 매거진 표지가 됩니다. 제호 프리셋 25종과 라이트룸식 색보정을 브라우저 안에서 처리합니다.",
+                  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" }
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 4,
+                "item": {
+                  "@type": "WebApplication",
+                  "name": "사진기능사 필기 예상문제은행",
+                  "url": "https://tools.musicits.com/photo-exam/",
+                  "applicationCategory": "EducationalApplication",
+                  "operatingSystem": "Web",
+                  "inLanguage": "ko",
+                  "description": "사진기능사 필기 예상문제 398문항으로 모의고사·과목별 연습·오답노트까지 브라우저에서 풉니다.",
+                  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" }
+                }
+              }
+            ]
+          }
+        ]
       }
     </script>
-    <style>
-      @import "https://fonts.googleapis.com/css2?family=DM+Mono&family=Noto+Sans+KR:wght@400;500;600;700&display=swap";
 
+    <style>
       :root {
-        --color-primary: #dffb51;
-        --color-bg: #101210;
-        --color-surface: #1b1f1b;
-        --color-text: #f5f5ee;
-        --color-muted: #9ba39b;
-        --color-accent: #87e7d1;
-        --line: #363c36;
+        color-scheme: dark;
+        --lime: #dffb51;
+        --mint: #87e7d1;
+        --bg: #0d0f0d;
+        --bg-soft: #141714;
+        --card: #171b17;
+        --card-hover: #1c211c;
+        --text: #f4f6ec;
+        --muted: #99a399;
+        --line: #2b312b;
+        --line-strong: #3d453d;
+        --chip: #c6cec6;
+        --glow-1: rgba(223, 251, 81, .14);
+        --glow-2: rgba(135, 231, 209, .13);
+        --shadow: 0 20px 50px rgba(0, 0, 0, .35);
+        --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+        --sans: -apple-system, BlinkMacSystemFont, "Pretendard Variable", Pretendard,
+          "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif;
+      }
+
+      :root[data-theme="light"] {
+        color-scheme: light;
+        --lime: #5d7a00;
+        --mint: #0f7f6a;
+        --bg: #f6f7f3;
+        --bg-soft: #eef0e8;
+        --card: #ffffff;
+        --card-hover: #ffffff;
+        --text: #16190f;
+        --muted: #5c645a;
+        --line: #dfe3d8;
+        --line-strong: #c3c9ba;
+        --chip: #4c5449;
+        --glow-1: rgba(160, 190, 40, .18);
+        --glow-2: rgba(15, 127, 106, .12);
+        --shadow: 0 16px 36px rgba(31, 38, 20, .10);
+      }
+
+      @media (prefers-color-scheme: light) {
+        :root:not([data-theme="dark"]) {
+          color-scheme: light;
+          --lime: #5d7a00;
+          --mint: #0f7f6a;
+          --bg: #f6f7f3;
+          --bg-soft: #eef0e8;
+          --card: #ffffff;
+          --card-hover: #ffffff;
+          --text: #16190f;
+          --muted: #5c645a;
+          --line: #dfe3d8;
+          --line-strong: #c3c9ba;
+          --chip: #4c5449;
+          --glow-1: rgba(160, 190, 40, .18);
+          --glow-2: rgba(15, 127, 106, .12);
+          --shadow: 0 16px 36px rgba(31, 38, 20, .10);
+        }
       }
 
       * { box-sizing: border-box; }
 
+      html { -webkit-text-size-adjust: 100%; }
+
       body {
         margin: 0;
         min-height: 100vh;
-        background: radial-gradient(circle at 90% 4%, rgba(135, 231, 209, .13), transparent 28rem), var(--color-bg);
-        color: var(--color-text);
-        font-family: Noto Sans KR, sans-serif;
-        font-size: 15px;
+        background: var(--bg);
+        background-image:
+          radial-gradient(60rem 30rem at 82% -8%, var(--glow-2), transparent 70%),
+          radial-gradient(48rem 26rem at 8% 2%, var(--glow-1), transparent 70%);
+        background-attachment: fixed;
+        color: var(--text);
+        font-family: var(--sans);
+        font-size: 16px;
+        line-height: 1.6;
+        word-break: keep-all;
+        overflow-wrap: break-word;
+        -webkit-font-smoothing: antialiased;
       }
 
-      header, main, footer { width: min(100%, 780px); margin: auto; }
+      a { color: inherit; }
 
-      header {
+      :focus-visible {
+        outline: 2px solid var(--mint);
+        outline-offset: 3px;
+        border-radius: 6px;
+      }
+
+      .wrap {
+        width: min(100%, 1060px);
+        margin-inline: auto;
+        padding-inline: 20px;
+      }
+
+      /* ── 머리줄 ───────────────────────────── */
+      .topbar {
         display: flex;
         align-items: center;
+        justify-content: space-between;
         gap: 12px;
-        padding: 28px 20px 25px;
-        border-bottom: 1px solid var(--line);
+        padding-block: 18px;
       }
 
-      .mark { color: var(--color-primary); font-size: 35px; line-height: 1; }
-
-      .eyebrow {
-        font-family: DM Mono, monospace;
-        letter-spacing: .08em;
-        color: var(--color-accent);
-        font-size: 11px;
-        text-transform: uppercase;
-        margin: 0 0 6px;
-      }
-
-      h1 { margin: 0; font-size: 24px; letter-spacing: -.05em; }
-
-      main { padding: 40px 20px 52px; }
-      .intro { color: var(--color-muted); line-height: 1.75; margin: 0 0 32px; font-size: 14px; }
-
-      .tool {
-        display: block;
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
         text-decoration: none;
-        color: inherit;
-        background: var(--color-surface);
-        border: 1px solid var(--line);
-        border-radius: 18px;
-        padding: 22px;
-        box-shadow: 0 18px 45px rgba(0, 0, 0, .22);
-        transition: border-color .15s, transform .15s;
+        font-weight: 700;
+        letter-spacing: -.02em;
       }
 
-      .tool:hover { border-color: var(--color-primary); transform: translateY(-2px); }
-      .tool h2 { margin: 0 0 8px; font-size: 20px; letter-spacing: -.03em; color: var(--color-primary); }
-      .tool p { margin: 0; color: var(--color-muted); font-size: 13px; line-height: 1.7; }
+      .brand .mark {
+        width: 32px;
+        height: 32px;
+        display: grid;
+        place-items: center;
+        border-radius: 10px;
+        background: var(--bg-soft);
+        border: 1px solid var(--line);
+        color: var(--lime);
+        flex: none;
+      }
 
-      .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
-      .chips span {
-        padding: 5px 8px;
+      .brand .mark svg { width: 17px; height: 17px; }
+      .brand span { font-size: 15px; }
+
+      .topbar-actions { display: flex; align-items: center; gap: 8px; }
+
+      .ghost {
+        appearance: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        height: 34px;
+        padding-inline: 12px;
         border-radius: 99px;
         border: 1px solid var(--line);
-        color: #c9d0c9;
-        font-family: DM Mono, monospace;
-        font-size: 11px;
+        background: transparent;
+        color: var(--muted);
+        font: inherit;
+        font-size: 12.5px;
+        text-decoration: none;
+        cursor: pointer;
+        transition: color .15s, border-color .15s, background-color .15s;
       }
+
+      .ghost:hover { color: var(--text); border-color: var(--line-strong); background: var(--bg-soft); }
+      .ghost svg { width: 15px; height: 15px; flex: none; }
+      .theme-toggle { width: 34px; padding: 0; justify-content: center; }
+      .theme-toggle .moon { display: none; }
+      :root[data-theme="light"] .theme-toggle .sun { display: none; }
+      :root[data-theme="light"] .theme-toggle .moon { display: block; }
+      @media (prefers-color-scheme: light) {
+        :root:not([data-theme="dark"]) .theme-toggle .sun { display: none; }
+        :root:not([data-theme="dark"]) .theme-toggle .moon { display: block; }
+      }
+
+      /* ── 첫 화면 ───────────────────────────── */
+      .hero { padding-block: 44px 34px; }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin: 0 0 18px;
+        padding: 6px 12px 6px 10px;
+        border-radius: 99px;
+        border: 1px solid var(--line);
+        background: var(--bg-soft);
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        color: var(--mint);
+      }
+
+      .eyebrow i {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--lime);
+        box-shadow: 0 0 0 3px var(--glow-1);
+      }
+
+      h1 {
+        margin: 0 0 16px;
+        font-size: clamp(30px, 6.4vw, 48px);
+        line-height: 1.18;
+        letter-spacing: -.045em;
+        font-weight: 700;
+      }
+
+      h1 em {
+        font-style: normal;
+        color: var(--lime);
+      }
+
+      .lede {
+        margin: 0;
+        max-width: 46ch;
+        color: var(--muted);
+        font-size: clamp(14.5px, 3.4vw, 16.5px);
+      }
+
+      .facts {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 24px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .facts li {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 12px;
+        border-radius: 99px;
+        border: 1px solid var(--line);
+        color: var(--chip);
+        font-size: 12.5px;
+      }
+
+      .facts svg { width: 14px; height: 14px; color: var(--mint); flex: none; }
+
+      /* ── 도구 칸 ───────────────────────────── */
+      .section-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+        margin: 0 0 16px;
+        padding-top: 30px;
+        border-top: 1px solid var(--line);
+      }
+
+      h2.section-title {
+        margin: 0;
+        font-size: 15px;
+        letter-spacing: -.02em;
+      }
+
+      .section-head .count {
+        font-family: var(--mono);
+        font-size: 11.5px;
+        color: var(--muted);
+      }
+
+      .tools {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 330px), 1fr));
+        gap: 14px;
+        margin: 0 0 8px;
+        padding: 0;
+        list-style: none;
+      }
+
+      .tool {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 22px 20px 20px;
+        border-radius: 20px;
+        border: 1px solid var(--line);
+        background: var(--card);
+        box-shadow: var(--shadow);
+        transition: border-color .18s ease, transform .18s ease, background-color .18s ease;
+      }
+
+      .tool:hover,
+      .tool:focus-within {
+        border-color: var(--line-strong);
+        background: var(--card-hover);
+        transform: translateY(-3px);
+      }
+
+      .tool-icon {
+        width: 40px;
+        height: 40px;
+        display: grid;
+        place-items: center;
+        border-radius: 12px;
+        border: 1px solid var(--line);
+        background: var(--bg-soft);
+        color: var(--lime);
+      }
+
+      .tool-icon svg { width: 21px; height: 21px; }
+
+      .tool h3 {
+        margin: 0;
+        font-size: 19px;
+        letter-spacing: -.035em;
+      }
+
+      .tool h3 a {
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      /* 카드 전체가 눌리는 자리 */
+      .tool h3 a::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+      }
+
+      .tool h3 a:hover { color: var(--lime); }
+      .tool h3 .arrow { transition: transform .18s ease; }
+      .tool:hover h3 .arrow { transform: translateX(3px); }
+
+      .tool p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.68;
+      }
+
+      .tool p b { color: var(--text); font-weight: 600; }
+
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: auto;
+        padding-top: 4px;
+      }
+
+      .chips span {
+        padding: 4px 9px;
+        border-radius: 8px;
+        border: 1px solid var(--line);
+        color: var(--chip);
+        font-family: var(--mono);
+        font-size: 11px;
+        line-height: 1.5;
+      }
+
+      .sub-link {
+        position: relative;
+        z-index: 1;
+        align-self: flex-start;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 12.5px;
+        color: var(--mint);
+        text-decoration: none;
+        border-bottom: 1px solid color-mix(in srgb, var(--mint) 40%, transparent);
+      }
+
+      .sub-link:hover { color: var(--lime); border-bottom-color: var(--lime); }
+      .sub-link svg { width: 13px; height: 13px; }
+
+      /* ── 만든이 ───────────────────────────── */
+      .about {
+        margin: 34px 0 0;
+        padding: 22px 20px;
+        border-radius: 20px;
+        border: 1px solid var(--line);
+        background: var(--bg-soft);
+      }
+
+      .about h2 { margin: 0 0 8px; font-size: 15px; letter-spacing: -.02em; }
+      .about p { margin: 0; color: var(--muted); font-size: 14px; }
+      .about a { color: var(--mint); text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--mint) 40%, transparent); }
+      .about a:hover { color: var(--lime); border-bottom-color: var(--lime); }
 
       footer {
+        margin-top: 34px;
+        padding: 20px 0 40px;
         border-top: 1px solid var(--line);
-        padding: 20px;
-        color: #697169;
-        font-family: DM Mono, monospace;
-        font-size: 10px;
-        text-align: center;
+        color: var(--muted);
+        font-family: var(--mono);
+        font-size: 11px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
       }
 
-      footer p { margin: 0; }
-      footer p + p { margin-top: 7px; }
+      footer a { color: var(--muted); text-decoration: none; }
+      footer a:hover { color: var(--text); }
+      footer .links { display: flex; gap: 14px; }
 
-      footer a {
-        color: var(--color-accent);
-        text-decoration: none;
-        border-bottom: 1px solid rgba(135, 231, 209, .35);
+      @media (min-width: 720px) {
+        .wrap { padding-inline: 32px; }
+        .hero { padding-block: 64px 44px; }
+        .tool { padding: 26px 24px 22px; }
+        .about { padding: 26px 24px; }
       }
 
-      footer a:hover { color: var(--color-primary); border-bottom-color: var(--color-primary); }
-
-      @media (min-width: 640px) {
-        header { padding-inline: 32px; }
-        main { padding: 52px 32px 64px; }
-        h1 { font-size: 28px; }
+      @media (prefers-reduced-motion: reduce) {
+        * { transition: none !important; animation: none !important; }
+        .tool:hover { transform: none; }
       }
     </style>
   </head>
   <body>
-    <header>
-      <div class="mark" aria-hidden="true">⌁</div>
-      <div>
-        <p class="eyebrow">MUSIC ITS</p>
-        <h1>웹 도구 모음</h1>
-      </div>
-    </header>
-
-    <main>
-      <p class="intro">
-        쭈뉘의 뮤직잇츠가 만든 도구를 모아둡니다.<br />
-        오디오와 IT 기기를 다루면서 필요했던 것들을 직접 만들어 공개합니다.
-      </p>
-
-      <a class="tool" href="./codec-match/">
-        <h2>코덱 매치 →</h2>
-        <p>
-          스마트폰과 이어폰·헤드폰을 고르면 두 기기가 실제로 협상할 것으로 예상되는
-          블루투스 코덱과 최대 비트레이트, 지연시간을 알려줍니다.
-        </p>
-        <div class="chips">
-          <span>SBC</span><span>AAC</span><span>aptX</span><span>aptX HD</span>
-          <span>aptX Adaptive</span><span>LDAC</span><span>LHDC</span><span>SSC</span><span>LC3</span>
-        </div>
-      </a>
-    </main>
-
-    <footer>
-      <p>MUSIC ITS</p>
-      <p>
-        만든이
-        <a href="https://blog.naver.com/musicits" target="_blank" rel="author noopener">
-          쭈뉘의 뮤직잇츠 music ITs
+    <div class="wrap">
+      <header class="topbar">
+        <a class="brand" href="/">
+          <span class="mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14.5 2 5 14h5.5L9 22l9.5-12H13z" /></svg>
+          </span>
+          <span>music ITs</span>
         </a>
-      </p>
-    </footer>
+        <div class="topbar-actions">
+          <a class="ghost" href="https://blog.naver.com/musicits" target="_blank" rel="author noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 5h7a3 3 0 0 1 3 3v11a2.5 2.5 0 0 0-2.5-2.5H4z" /><path d="M20 5h-3a3 3 0 0 0-3 3v11a2.5 2.5 0 0 1 2.5-2.5H20z" />
+            </svg>
+            블로그
+          </a>
+          <button class="ghost theme-toggle" type="button" id="theme" aria-label="밝은 화면과 어두운 화면 바꾸기">
+            <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="4" /><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4" />
+            </svg>
+            <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" />
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero">
+          <p class="eyebrow"><i aria-hidden="true"></i>music ITs web tools</p>
+          <h1>오디오와 IT 기기를 다루다<br /><em>필요해서 직접 만든 도구</em>들</h1>
+          <p class="lede">
+            블루투스 코덱 호환 확인부터 스크린샷 목업, 매거진 표지, 자격증 문제풀이까지.
+            설치도 로그인도 없이 브라우저에서 바로 씁니다.
+          </p>
+          <ul class="facts">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
+              전부 무료
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
+              설치·회원가입 없음
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
+              휴대폰에서도 그대로
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
+              사진·기록은 브라우저 안에만
+            </li>
+          </ul>
+        </section>
+
+        <div class="section-head">
+          <h2 class="section-title">도구 모음</h2>
+          <span class="count">04</span>
+        </div>
+
+        <ul class="tools">
+          <li class="tool">
+            <span class="tool-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3v18l5-4.5-10-9L12 3z" /><path d="M7 15.5 17 6.5" />
+              </svg>
+            </span>
+            <h3>
+              <a href="/codec-match/">코덱 매치<span class="arrow" aria-hidden="true">→</span></a>
+            </h3>
+            <p>
+              스마트폰과 이어폰·헤드폰을 고르면 두 기기가 실제로 협상할
+              <b>블루투스 코덱</b>과 최대 비트레이트·지연시간을 알려줍니다.
+              LDAC 되는 조합인지 사기 전에 확인하세요.
+            </p>
+            <div class="chips">
+              <span>SBC</span><span>AAC</span><span>aptX</span><span>aptX HD</span>
+              <span>aptX Adaptive</span><span>LDAC</span><span>LHDC</span><span>SSC</span><span>LC3</span>
+            </div>
+          </li>
+
+          <li class="tool">
+            <span class="tool-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="6" y="2.5" width="12" height="19" rx="3" /><path d="M10 5.5h4" /><path d="M10.5 18.5h3" />
+              </svg>
+            </span>
+            <h3>
+              <a href="/phone-mockup-studio/">폰 목업 스튜디오<span class="arrow" aria-hidden="true">→</span></a>
+            </h3>
+            <p>
+              스크린샷을 <b>아이폰·갤럭시 프레임</b>에 끼워 PNG로 저장합니다.
+              기기 색상 이름은 애플·삼성 한국 공식 표기 그대로입니다.
+            </p>
+            <div class="chips">
+              <span>iPhone 18 Pro Max</span><span>Galaxy S26 Ultra</span><span>드래그&amp;드롭</span>
+              <span>붙여넣기</span><span>여러 장</span>
+            </div>
+          </li>
+
+          <li class="tool">
+            <span class="tool-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3.5" y="3" width="17" height="18" rx="3" /><path d="M3.5 8.5h17" /><path d="M7.5 12.5h6" /><path d="M7.5 16h9" />
+              </svg>
+            </span>
+            <h3>
+              <a href="/magazine-cover-maker/">매거진 커버 메이커<span class="arrow" aria-hidden="true">→</span></a>
+            </h3>
+            <p>
+              사진을 끌어다 놓으면 바로 <b>잡지 표지</b>가 됩니다. 제호 조판 프리셋 25종,
+              라이트룸식 색보정, 필름 룩 9종. 사진은 브라우저 밖으로 나가지 않습니다.
+            </p>
+            <div class="chips">
+              <span>제호 25종</span><span>톤 커브</span><span>필름 룩 9</span><span>일괄 저장</span>
+            </div>
+            <a class="sub-link" href="/magazine-cover-maker/m/">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="7" y="2.5" width="10" height="19" rx="2.5" /><path d="M11 18.5h2" />
+              </svg>
+              휴대폰 전용 화면으로 열기
+            </a>
+          </li>
+
+          <li class="tool">
+            <span class="tool-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="4.5" y="3.5" width="15" height="17" rx="2.5" /><path d="M9 3.5V2h6v1.5" /><path d="m8.5 11.5 2 2 4.5-4.5" />
+              </svg>
+            </span>
+            <h3>
+              <a href="/photo-exam/">사진기능사 필기 예상문제<span class="arrow" aria-hidden="true">→</span></a>
+            </h3>
+            <p>
+              <b>예상문제 398문항</b>으로 60분 모의고사, 과목별·단원별 연습, 오답 다시 풀기까지.
+              풀이 기록은 서버가 아니라 각자 브라우저 안에만 남습니다.
+            </p>
+            <div class="chips">
+              <span>398문항</span><span>60분 모의고사</span><span>오답노트</span><span>.md 내보내기</span>
+            </div>
+          </li>
+        </ul>
+
+        <section class="about">
+          <h2>누가 만드나요</h2>
+          <p>
+            네이버 IT 블로그 <a href="https://blog.naver.com/musicits" target="_blank" rel="author noopener">쭈뉘의 뮤직잇츠 music ITs</a> 를
+            운영하면서 갤럭시·아이폰 소식과 음향기기 리뷰를 씁니다. 리뷰를 쓰다 필요해진 것들을
+            직접 만들어 여기에 올려 둡니다. 코드는 전부
+            <a href="https://github.com/musicits" target="_blank" rel="noopener">GitHub</a> 에 공개돼 있습니다.
+          </p>
+        </section>
+      </main>
+
+      <footer>
+        <p>© music ITs</p>
+        <span class="links">
+          <a href="https://blog.naver.com/musicits" target="_blank" rel="author noopener">BLOG</a>
+          <a href="https://github.com/musicits" target="_blank" rel="noopener">GITHUB</a>
+        </span>
+      </footer>
+    </div>
+
+    <script>
+      (function () {
+        var root = document.documentElement;
+        var KEY = "musicits-theme";
+        var saved = null;
+        try { saved = localStorage.getItem(KEY); } catch (e) {}
+        if (saved === "light" || saved === "dark") root.setAttribute("data-theme", saved);
+
+        document.getElementById("theme").addEventListener("click", function () {
+          var systemDark = !window.matchMedia("(prefers-color-scheme: light)").matches;
+          var current = root.getAttribute("data-theme") || (systemDark ? "dark" : "light");
+          var next = current === "dark" ? "light" : "dark";
+          root.setAttribute("data-theme", next);
+          try { localStorage.setItem(KEY, next); } catch (e) {}
+        });
+      })();
+    </script>
   </body>
 </html>
