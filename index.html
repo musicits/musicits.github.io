@@ -444,7 +444,9 @@
       .tool > p b { color: var(--ink); font-weight: 700; }
 
       .codec-list { display: flex; flex-wrap: wrap; gap: 5px; margin-top: auto; padding-top: 2px; }
-      .codec-list .chip { padding: 3px 8px; font-size: 11.5px; box-shadow: none; }
+      .codec-list .chip { padding: 3px 8px; font-size: 11.5px; box-shadow: none; white-space: nowrap; }
+      .codec-list .chip--more { color: var(--stone); cursor: default; }
+      .chip[hidden] { display: none; }
 
       .tool__go {
         display: inline-flex;
@@ -665,6 +667,44 @@
     </div>
 
     <script>
+      /* 칩은 한 줄까지만 보여 준다. 넘치는 것은 감추고 끝에 +N 을 붙인다.
+         카드마다 칩 줄 높이가 달라지지 않게 하려는 것. */
+      (function () {
+        var lists = document.querySelectorAll(".codec-list");
+
+        function fit() {
+          lists.forEach(function (list) {
+            var chips = [].slice.call(list.querySelectorAll(".chip:not(.chip--more)"));
+            if (!chips.length) return;
+
+            var more = list.querySelector(".chip--more");
+            if (!more) {
+              more = document.createElement("span");
+              more.className = "chip chip--more";
+              list.appendChild(more);
+            }
+
+            var n = chips.length;
+            while (n > 0) {
+              chips.forEach(function (c, i) { c.hidden = i >= n; });
+              more.hidden = n === chips.length;
+              more.textContent = "+" + (chips.length - n);
+              more.title = chips.slice(n).map(function (c) { return c.textContent; }).join(", ");
+
+              var top = chips[0].offsetTop;
+              var spill = chips.some(function (c, i) { return i < n && c.offsetTop > top; });
+              if (!spill && !(!more.hidden && more.offsetTop > top)) break;
+              n--;
+            }
+          });
+        }
+
+        fit();
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+        var t;
+        addEventListener("resize", function () { clearTimeout(t); t = setTimeout(fit, 120); });
+      })();
+
       (function () {
         var root = document.documentElement;
         var KEY = "musicits-theme";
