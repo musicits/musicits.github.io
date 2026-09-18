@@ -132,10 +132,10 @@
          토큰을 고칠 때는 도구 쪽도 같이 고쳐야 합니다.
       ─────────────────────────────────────────────── */
       :root {
-        --main: #0e9f7a;
-        --main-deep: #0a7059;
-        --pool-a: #8fe6cb;
-        --pool-b: #8ccbff;
+        --main: #2c323c;
+        --main-deep: #171b21;
+        --pool-a: #cdd9e6;
+        --pool-b: #cfe3f2;
         --canvas: #ffffff;
         --surface: #f1f3f7;
         --surface-soft: #f7f8fa;
@@ -150,7 +150,7 @@
         --r-lg: 16px;
         --r-outer: 24px;
         --glass: saturate(180%) blur(26px);
-        --glass-face: color-mix(in srgb, var(--main) 4%, rgba(247, 248, 250, .74));
+        --glass-face: rgba(247, 248, 250, .74);
         --glass-hairline: rgba(20, 35, 60, .1);
         --glass-rim: inset 0 1px 0 rgba(255, 255, 255, .92), inset 0 0 0 .5px rgba(20, 35, 60, .14), 0 0 0 .5px rgba(20, 35, 60, .1);
         --glass-sheen: rgba(255, 255, 255, .55);
@@ -185,10 +185,10 @@
       }
 
       :root[data-theme="dark"] {
-        --main: #3dd6a6;
-        --main-deep: #8ff0cf;
-        --pool-a: #177a62;
-        --pool-b: #22557f;
+        --main: #cdd4e0;
+        --main-deep: #eceef2;
+        --pool-a: #2b3645;
+        --pool-b: #24384a;
         --canvas: #161920;
         --surface: #1d2129;
         --surface-soft: #0b0d11;
@@ -198,7 +198,7 @@
         --slate: #bac0cb;
         --steel: #9199a6;
         --stone: #6f7784;
-        --glass-face: color-mix(in srgb, var(--main) 5%, rgba(20, 23, 29, .74));
+        --glass-face: rgba(20, 23, 29, .74);
         --glass-hairline: rgba(255, 255, 255, .1);
         --glass-rim: inset 0 1px 0 rgba(255, 255, 255, .18), inset 0 0 0 .5px rgba(255, 255, 255, .06), 0 0 0 .5px rgba(0, 0, 0, .45);
         --glass-sheen: rgba(255, 255, 255, .05);
@@ -419,6 +419,24 @@
       .tool:hover,
       .tool:focus-within { transform: translateY(-2px); border-color: color-mix(in srgb, var(--main) 40%, transparent); }
 
+      /* 도구마다 제 색을 쓴다. 카드 안의 아이콘·[열기]·테두리가 그 색으로 바뀐다. */
+      .tool--codec { --main: #0e9f7a; --main-deep: #0a7059; }
+      .tool--mockup { --main: #7b5cf0; --main-deep: #5a3ed1; }
+      .tool--cover { --main: #dc3f5c; --main-deep: #b32744; }
+      .tool--exam { --main: #2563eb; --main-deep: #1d4ed8; }
+
+      :root[data-theme="dark"] .tool--codec { --main: #3dd6a6; --main-deep: #8ff0cf; }
+      :root[data-theme="dark"] .tool--mockup { --main: #a58cff; --main-deep: #c9b8ff; }
+      :root[data-theme="dark"] .tool--cover { --main: #ff8093; --main-deep: #ffb3bf; }
+      :root[data-theme="dark"] .tool--exam { --main: #7da2ff; --main-deep: #b8cbff; }
+
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) .tool--codec { --main: #3dd6a6; --main-deep: #8ff0cf; }
+        :root:not([data-theme="light"]) .tool--mockup { --main: #a58cff; --main-deep: #c9b8ff; }
+        :root:not([data-theme="light"]) .tool--cover { --main: #ff8093; --main-deep: #ffb3bf; }
+        :root:not([data-theme="light"]) .tool--exam { --main: #7da2ff; --main-deep: #b8cbff; }
+      }
+
       .tool__head { display: flex; align-items: center; gap: 10px; }
 
       .tool__icon {
@@ -564,7 +582,7 @@
       </div>
 
       <ul class="tools">
-        <li class="tool">
+        <li class="tool tool--codec">
           <div class="tool__head">
             <span class="tool__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -586,7 +604,7 @@
           <div class="tool__foot"><span class="tool__go">열기 →</span></div>
         </li>
 
-        <li class="tool">
+        <li class="tool tool--mockup">
           <div class="tool__head">
             <span class="tool__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -606,7 +624,7 @@
           <div class="tool__foot"><span class="tool__go">열기 →</span></div>
         </li>
 
-        <li class="tool">
+        <li class="tool tool--cover">
           <div class="tool__head">
             <span class="tool__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -627,7 +645,7 @@
           <div class="tool__foot"><span class="tool__go">열기 →</span></div>
         </li>
 
-        <li class="tool">
+        <li class="tool tool--exam">
           <div class="tool__head">
             <span class="tool__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
