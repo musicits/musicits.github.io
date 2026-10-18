@@ -66,7 +66,7 @@
             "@type": "ItemList",
             "name": "music ITs 웹 도구",
             "itemListOrder": "https://schema.org/ItemListOrderAscending",
-            "numberOfItems": 4,
+            "numberOfItems": 5,
             "itemListElement": [
               {
                 "@type": "ListItem",
@@ -118,6 +118,17 @@
                   "operatingSystem": "Web",
                   "inLanguage": "ko",
                   "description": "사진기능사 필기 예상문제 398문항으로 모의고사·과목별 연습·오답노트까지 브라우저에서 풉니다."
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 5,
+                "item": {
+                  "@type": "WebPage",
+                  "name": "AI 사용량 벤치마크 — Claude 토큰 월별 순위",
+                  "url": "https://tools.musicits.com/ai/",
+                  "inLanguage": "ko",
+                  "description": "맥·PC·클라우드·채팅에서 쓴 Claude 토큰을 API 요금으로 환산해 달마다 순위를 매기고, 그걸로 만든 것들을 모았습니다."
                 }
               }
             ]
@@ -426,17 +437,22 @@
       .tool--mockup { --main: #7b5cf0; --main-deep: #5a3ed1; }
       .tool--cover { --main: #dc3f5c; --main-deep: #b32744; }
       .tool--exam { --main: #0e7c8a; --main-deep: #0a5f6b; }
+      .tool--ai { --main: #a8741a; --main-deep: #94600f; }
+      .tool--wide { grid-column: 1 / -1; }
+      .tool--wide p { max-width: 72ch; }
 
       :root[data-theme="dark"] .tool--codec { --main: #3dd6a6; --main-deep: #8ff0cf; }
       :root[data-theme="dark"] .tool--mockup { --main: #a58cff; --main-deep: #c9b8ff; }
       :root[data-theme="dark"] .tool--cover { --main: #ff8093; --main-deep: #ffb3bf; }
       :root[data-theme="dark"] .tool--exam { --main: #4fb3c4; --main-deep: #8fd8e4; }
+      :root[data-theme="dark"] .tool--ai { --main: #e6a94a; --main-deep: #f0bc66; }
 
       @media (prefers-color-scheme: dark) {
         :root:not([data-theme="light"]) .tool--codec { --main: #3dd6a6; --main-deep: #8ff0cf; }
         :root:not([data-theme="light"]) .tool--mockup { --main: #a58cff; --main-deep: #c9b8ff; }
         :root:not([data-theme="light"]) .tool--cover { --main: #ff8093; --main-deep: #ffb3bf; }
         :root:not([data-theme="light"]) .tool--exam { --main: #4fb3c4; --main-deep: #8fd8e4; }
+        :root:not([data-theme="light"]) .tool--ai { --main: #e6a94a; --main-deep: #f0bc66; }
       }
 
       .tool__head { display: flex; align-items: center; gap: 10px; }
@@ -572,6 +588,7 @@
         <h2>오디오와 IT 기기를 다루다<br /><em>필요해서 직접 만든 도구들</em></h2>
         <p>
           블루투스 코덱 호환 확인부터 스크린샷 목업, 매거진 표지, 자격증 문제풀이까지.<br />
+          이걸 만들며 AI 를 얼마나 썼는지도 기록해 둡니다.<br />
           설치 없이 브라우저에서 바로 씁니다.
         </p>
         <div class="marks">
@@ -665,6 +682,34 @@
           <div class="codec-list">
             <span class="chip">398문항</span><span class="chip">60분 모의고사</span>
             <span class="chip">오답노트</span><span class="chip">.md 내보내기</span>
+          </div>
+          <div class="tool__foot"><span class="tool__go">열기 →</span></div>
+        </li>
+      </ul>
+
+      <div class="tools-label">
+        <h2>기록</h2>
+        <span>1개</span>
+      </div>
+
+      <ul class="tools">
+        <li class="tool tool--ai tool--wide">
+          <div class="tool__head">
+            <span class="tool__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 20h16" /><path d="M7 16v-4" /><path d="M11.5 16V7" /><path d="M16 16v-6.5" />
+              </svg>
+            </span>
+            <h3><a href="./ai/">AI 사용량 벤치마크</a></h3>
+          </div>
+          <p>
+            Claude 를 <b>얼마나, 무엇에</b> 썼는지 달마다 순위를 매겼습니다.
+            맥·PC·클라우드·채팅에서 쓴 토큰을 API 요금으로 환산하고, 그걸로 만든 도구와 줄일 수 있는 곳까지 모았습니다.
+            매일 아침 새 숫자로 바뀝니다.
+          </p>
+          <div class="codec-list">
+            <span class="chip">월별 순위</span><span class="chip">맥 vs PC</span><span class="chip">모델 구성</span>
+            <span class="chip">만든 것</span><span class="chip">최적화 처방</span>
           </div>
           <div class="tool__foot"><span class="tool__go">열기 →</span></div>
         </li>

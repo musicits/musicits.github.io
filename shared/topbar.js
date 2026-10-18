@@ -23,6 +23,9 @@
     { id: 'photo-exam', name: '사진기능사 필기 예상문제',
       tagline: '예상문제 398문항 · 60분 모의고사',
       url: HUB + 'photo-exam/', icon: 'exam' },
+    { id: 'ai', name: 'AI 사용량 벤치마크',
+      tagline: 'Claude 를 얼마나, 무엇에 썼나',
+      url: HUB + 'ai/', icon: 'chart' },
   ]
 
   const ICONS = {
@@ -30,6 +33,7 @@
     phone: '<rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M10.5 5h3"/>',
     cover: '<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h5"/>',
     exam: '<rect x="4.5" y="3.5" width="15" height="17" rx="2.5"/><path d="m8.5 11.5 2 2 4.5-4.5"/>',
+    chart: '<path d="M4 20h16M7 16v-4M11.5 16V7M16 16v-6.5"/>',
   }
 
   const line = (body) =>
