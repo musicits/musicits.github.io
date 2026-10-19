@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>노트 설명서</title>
+<link rel="icon" href="favicon.png">
+<style>
+:root {
+  --bg: #ffffff; --side: #f7f6f3; --fg: #2a2824; --fg2: #4a463f; --muted: #8d877d; --line: #e9e5de; --line2: #f0ede7;
+  --accent: #dd4b4e; --accent2: #c23c3f; --hl: rgba(255, 213, 0, .42); --tag-bg: rgba(221, 75, 78, .1); --tag-fg: #c23c3f;
+  --mark: #c6c0b5; --quote: #6f695f; --code-bg: #f4f2ee; --kbd-bg: #fbfaf8;
+  --sans: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, 'D2Coding', monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1e1e1d; --side: #191918; --fg: #ebe7e0; --fg2: #cfcac1; --muted: #8f8a81; --line: #302e2b; --line2: #282725;
+    --accent: #f06a6a; --accent2: #ff8585; --hl: rgba(255, 213, 0, .26); --tag-bg: rgba(240, 106, 106, .15); --tag-fg: #ff8b8b;
+    --mark: #5c5852; --quote: #aaa49a; --code-bg: #262524; --kbd-bg: #232322; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1e1e1d; --side: #191918; --fg: #ebe7e0; --fg2: #cfcac1; --muted: #8f8a81; --line: #302e2b; --line2: #282725;
+  --accent: #f06a6a; --accent2: #ff8585; --hl: rgba(255, 213, 0, .26); --tag-bg: rgba(240, 106, 106, .15); --tag-fg: #ff8b8b;
+  --mark: #5c5852; --quote: #aaa49a; --code-bg: #262524; --kbd-bg: #232322; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 20px; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 15.5px; line-height: 1.75;
+  -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+.wrap { display: grid; grid-template-columns: 230px minmax(0, 1fr); max-width: 1120px; margin: 0 auto; }
+nav.toc { position: sticky; top: 0; align-self: start; height: 100vh; overflow-y: auto; padding: 36px 18px 36px 24px;
+  border-right: 1px solid var(--line2); }
+.brand { display: flex; align-items: center; gap: 9px; font-weight: 800; font-size: 16px; margin-bottom: 26px; }
+.brand i { width: 24px; height: 24px; border-radius: 7px; background: var(--accent); display: grid; place-items: center; color: #fff;
+  font-style: normal; font-size: 14px; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; counter-reset: s; }
+nav.toc li a { display: block; padding: 5px 10px; border-radius: 7px; color: var(--fg2); font-size: 14px; counter-increment: s; }
+nav.toc li a::before { content: counter(s) '  '; color: var(--mark); font-variant-numeric: tabular-nums; }
+nav.toc li a:hover { background: var(--side); text-decoration: none; color: var(--fg); }
+.back { display: inline-block; margin-top: 24px; font-size: 13px; color: var(--muted); }
+
+main { padding: 44px 56px 120px; max-width: 820px; }
+header.top h1 { font-size: 34px; letter-spacing: -.8px; line-height: 1.25; margin: 0 0 10px; }
+header.top p { color: var(--muted); margin: 0 0 8px; font-size: 16px; }
+section { padding-top: 40px; margin-top: 40px; border-top: 1px solid var(--line2); }
+h2 { font-size: 23px; letter-spacing: -.4px; margin: 0 0 6px; line-height: 1.35; }
+h2 small { display: block; font-size: 14px; font-weight: 500; color: var(--muted); letter-spacing: 0; margin-top: 2px; }
+h3 { font-size: 16.5px; margin: 28px 0 8px; }
+p { margin: 8px 0; }
+ul.plain { margin: 8px 0; padding-left: 20px; }
+ul.plain li { margin: 3px 0; }
+ul.plain li::marker { color: var(--accent); }
+
+kbd { display: inline-block; min-width: 22px; padding: 0 6px; height: 22px; line-height: 21px; text-align: center; font-family: var(--sans);
+  font-size: 12.5px; color: var(--fg2); background: var(--kbd-bg); border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 6px;
+  vertical-align: 1px; white-space: nowrap; }
+code { font-family: var(--mono); font-size: .86em; background: var(--code-bg); border-radius: 5px; padding: 1px 6px; white-space: nowrap; }
+
+/* 치면 → 이렇게 */
+.demo { display: grid; grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1fr); align-items: stretch; gap: 0; margin: 14px 0 6px;
+  border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.demo > div { padding: 14px 16px; min-width: 0; }
+.demo .src { background: var(--code-bg); font-family: var(--mono); font-size: 13px; line-height: 1.85; white-space: pre; overflow-x: auto; color: var(--fg2); }
+.demo .arrow { display: grid; place-items: center; color: var(--mark); background: var(--code-bg); border-right: 1px solid var(--line); padding: 0; }
+.demo .out { line-height: 1.85; }
+.demo .lbl { display: block; font-family: var(--sans); font-size: 11.5px; color: var(--muted); margin-bottom: 4px; letter-spacing: .2px; }
+.b { color: var(--accent); font-weight: 800; display: inline-block; width: 1.1em; }
+.b { position: relative; color: transparent; height: 1em; vertical-align: -.12em; }
+.b::before { content: ''; position: absolute; left: .14em; top: 50%; transform: translateY(-50%); box-sizing: border-box;
+  width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.b.l2::before { width: 7.5px; height: 7.5px; background: none; border: 1.6px solid var(--accent); }
+.b.l3::before { width: 5.5px; height: 5.5px; border-radius: 1.5px; }
+.n { color: var(--accent); font-weight: 600; margin-right: 4px; }
+.i1 { padding-left: 1.6em; } .i2 { padding-left: 3.2em; } .ic { padding-left: 1.1em; }
+.chk { display: inline-block; width: 15px; height: 15px; border: 1.8px solid var(--mark); border-radius: 4px; vertical-align: -2px; margin-right: 8px; }
+.chk.on { background: var(--accent); border-color: var(--accent); position: relative; }
+.chk.on::after { content: ''; position: absolute; left: 3.5px; top: .5px; width: 4px; height: 8px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+.done { color: var(--muted); text-decoration: line-through; }
+mark { background: var(--hl); color: inherit; border-radius: 3px; padding: 0 2px; }
+u { text-underline-offset: 3px; }
+.h1x { font-size: 1.45em; font-weight: 750; letter-spacing: -.4px; position: relative; }
+.hl { position: absolute; left: -30px; top: 50%; transform: translateY(-50%); font-size: 11px; font-weight: 600; color: var(--mark); }
+
+/* 표 */
+.tbl { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 14.5px; }
+.tbl th, .tbl td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line2); vertical-align: top; }
+.tbl th { font-size: 12.5px; color: var(--muted); font-weight: 600; border-bottom-color: var(--line); white-space: nowrap; }
+.tbl td:first-child { white-space: nowrap; }
+.tbl-wrap { overflow-x: auto; }
+
+/* 서식 막대 그림 */
+.bar { display: inline-flex; align-items: center; gap: 2px; padding: 4px 6px; border: 1px solid var(--line); border-radius: 12px;
+  box-shadow: 0 6px 24px rgba(30, 24, 16, .1); background: var(--bg); margin: 10px 0 4px; max-width: 100%; overflow-x: auto; }
+.bar span { min-width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; border-radius: 8px;
+  color: var(--fg2); font-size: 14px; flex: none; }
+.bar .sep { min-width: 1px; width: 1px; height: 18px; background: var(--line); margin: 0 4px; }
+.bar svg { width: 18px; height: 18px; }
+
+.note { border: 1px solid var(--line); background: var(--tag-bg); border-radius: 12px; padding: 12px 16px; margin: 16px 0; color: var(--fg2); font-size: 14.5px; }
+.note b { color: var(--fg); }
+.grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 12px 0; }
+.card { border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+.card h4 { margin: 0 0 4px; font-size: 14.5px; }
+.card p { margin: 0; color: var(--fg2); font-size: 14px; }
+
+@media (max-width: 860px) {
+  .wrap { display: block; }
+  nav.toc { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--line2); padding: 22px 16px 14px; }
+  nav.toc ol { display: flex; flex-wrap: wrap; gap: 4px; }
+  nav.toc li a { padding: 4px 9px; background: var(--side); font-size: 13px; }
+  .brand { margin-bottom: 14px; }
+  .back { margin-top: 12px; }
+  main { padding: 26px 16px 90px; }
+  header.top h1 { font-size: 27px; }
+  .grid2 { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 520px) {
+  .demo { grid-template-columns: minmax(0, 1fr); }
+  .demo .arrow { height: 26px; border-right: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--bg); }
+  .demo .arrow svg { transform: rotate(90deg); }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="toc" aria-label="목차">
+    <div class="brand"><i>≡</i>노트 설명서</div>
+    <ol>
+      <li><a href="#start">시작하기</a></li>
+      <li><a href="#list">목록 · 들여쓰기</a></li>
+      <li><a href="#todo">할 일</a></li>
+      <li><a href="#head">제목</a></li>
+      <li><a href="#style">글자 모양</a></li>
+      <li><a href="#bar">아래 서식 막대</a></li>
+      <li><a href="#blocks">인용 · 표 · 코드</a></li>
+      <li><a href="#link">노트 잇기 · 태그</a></li>
+      <li><a href="#daily">일기 · 달력</a></li>
+      <li><a href="#find">찾기</a></li>
+      <li><a href="#keys">단축키 모음</a></li>
+      <li><a href="#move">베어에서 옮겨 오기</a></li>
+      <li><a href="#claude">Claude 연결</a></li>
+      <li><a href="#safe">기록 · 백업 · 업데이트</a></li>
+    </ol>
+    <a class="back" href="./">← 노트로 돌아가기</a>
+  </nav>
+
+  <main>
+    <header class="top">
+      <h1>베어처럼 쓰고, 옵시디언처럼 잇는 노트</h1>
+      <p>쓰는 감각은 베어와 같게, 저장은 그냥 <code>.md</code> 파일로. 나스에 있어서 회사·집·폰 어디서나 같은 노트를 엽니다.</p>
+      <p>맥은 <kbd>⌘</kbd>, 윈도우는 <kbd>Ctrl</kbd> 로 읽으면 됩니다.</p>
+    </header>
+
+    <section id="start">
+      <h2>시작하기</h2>
+      <div class="grid2">
+        <div class="card"><h4>주소</h4><p><code>notes.musicits.com</code><br>구글 메일 확인 → 노트 로그인</p></div>
+        <div class="card"><h4>로그인 유지</h4><p>구글 확인은 한 달, 노트 로그인은 90일 동안 다시 묻지 않습니다</p></div>
+        <div class="card"><h4>앱처럼 띄우기</h4><p>크롬·엣지 주소창의 <b>앱 설치</b> · 사파리 <b>파일 → Dock에 추가</b></p></div>
+        <div class="card"><h4>아이폰</h4><p>사파리 공유 → <b>홈 화면에 추가</b></p></div>
+      </div>
+      <p>쓰는 동안 저절로 저장되고, 다른 기기는 몇 초 안에 받아 갑니다. 인터넷이 끊겨도 계속 쓸 수 있고, 다시 닿으면 보냅니다.</p>
+    </section>
+
+    <section id="list">
+      <h2>목록 · 들여쓰기<small>베어와 같은 손놀림</small></h2>
+
+      <h3>글머리는 치는 순간 바뀝니다</h3>
+      <div class="demo">
+        <div class="src"><span class="lbl">이렇게 치면</span>* 첫째
+- 둘째</div>
+        <div class="arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8h9M9 4.5L12.5 8 9 11.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="out"><span class="lbl">이렇게 보입니다</span><span class="b">•</span> 첫째<br><span class="b">•</span> 둘째</div>
+      </div>
+      <p><code>*</code> <code>-</code> <code>+</code> 뒤에 빈칸을 치면 바로 빨간 점이 됩니다. 커서가 있는 줄에서도 기호가 다시 나오지 않습니다.</p>
+
+      <h3>Tab 으로 하위 항목, 단계마다 모양이 바뀝니다</h3>
+      <div class="demo">
+        <div class="src"><span class="lbl">키</span>* 할 일 정리      ⏎
+  Tab  촬영 준비     ⏎
+  Tab  소품 목록</div>
+        <div class="arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8h9M9 4.5L12.5 8 9 11.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="out"><span class="lbl">화면</span><span class="b">•</span> 할 일 정리<br><div class="i1"><span class="b l2">◦</span> 촬영 준비</div><div class="i2"><span class="b l3">▪</span> 소품 목록</div></div>
+      </div>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>누르는 것</th><th>하는 일</th></tr>
+        <tr><td><kbd>Tab</kbd></td><td>한 단계 들여쓰기(윗 항목의 하위로). 커서가 줄 어디에 있어도 됩니다.</td></tr>
+        <tr><td><kbd>⇧</kbd> <kbd>Tab</kbd></td><td>한 단계 내어쓰기</td></tr>
+        <tr><td><kbd>⌘</kbd> <kbd>]</kbd> · <kbd>⌘</kbd> <kbd>[</kbd></td><td>들여쓰기 · 내어쓰기(여러 줄을 골라도 됩니다)</td></tr>
+        <tr><td><kbd>⏎</kbd></td><td>다음 항목. 번호는 하나씩 올라가고, 할 일은 빈 칸으로 이어집니다.</td></tr>
+        <tr><td>빈 항목에서 <kbd>⏎</kbd></td><td>한 단계씩 빠져나옵니다. 맨 앞 단계면 글머리가 지워집니다.</td></tr>
+        <tr><td>항목 맨 앞에서 <kbd>⌫</kbd></td><td>들여쓴 항목은 내어쓰고, 맨 앞이면 글머리만 지웁니다(글은 남습니다).</td></tr>
+        <tr><td><kbd>⇧</kbd> <kbd>⏎</kbd></td><td>같은 항목 안에서 줄만 바꿉니다. 새 글머리가 생기지 않습니다.</td></tr>
+      </table></div>
+
+      <h3>번호 목록은 <code>1.</code> 과 <code>0)</code> 둘 다</h3>
+      <div class="demo">
+        <div class="src"><span class="lbl">이렇게 치면</span>0) Things Happen, Time Passes.
+   - 지금의 감정은 결국 사라진다.
+
+1) 지금 할 것
+   - 촬영 스토리보드
+     요청할 거리 정리</div>
+        <div class="arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8h9M9 4.5L12.5 8 9 11.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="out"><span class="lbl">이렇게 보입니다</span><span class="n">0)</span>Things Happen, Time Passes.<div class="i1"><span class="b l2">◦</span> 지금의 감정은 결국 사라진다.</div><br><span class="n">1)</span>지금 할 것<div class="i1"><span class="b l2">◦</span> 촬영 스토리보드<div class="ic">요청할 거리 정리</div></div></div>
+      </div>
+      <div class="note"><b>베어 파일과 같은 모양으로 저장합니다.</b> 하위 항목은 탭 대신 띄어쓰기로, 윗 항목의 글이 시작하는 칸에 맞춥니다(<code>0) </code> 아래 3칸, <code>- </code> 아래 2칸). 베어 백업 272개를 열어 보고 맞춘 규칙이라, 베어로 다시 가져가도 모양이 그대로입니다.</div>
+    </section>
+
+    <section id="todo">
+      <h2>할 일</h2>
+      <div class="demo">
+        <div class="src"><span class="lbl">이렇게 치면</span>- [ ] 장 보기
+- [x] 원고 넘기기</div>
+        <div class="arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8h9M9 4.5L12.5 8 9 11.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="out"><span class="lbl">이렇게 보입니다</span><span class="chk"></span>장 보기<br><span class="chk on"></span><span class="done">원고 넘기기</span></div>
+      </div>
+      <ul class="plain">
+        <li><kbd>⌘</kbd> <kbd>⏎</kbd> 로 할 일 칸을 만들고, 한 번 더 누르면 체크합니다. 칸을 눌러도 체크됩니다.</li>
+        <li>체크가 남은 노트는 왼쪽 <b>할 일</b>에 모입니다.</li>
+      </ul>
+    </section>
+
+    <section id="head">
+      <h2>제목</h2>
+      <div class="demo">
+        <div class="src"><span class="lbl">이렇게 치면</span># 10/16 Brain Dump</div>
+        <div class="arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8h9M9 4.5L12.5 8 9 11.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="out" style="padding-left:46px"><span class="lbl">이렇게 보입니다</span><span class="h1x"><span class="hl">H1</span>10/16 Brain Dump</span></div>
+      </div>
+      <ul class="plain">
+        <li><code>#</code> ~ <code>######</code> 뒤에 빈칸을 치면 제목 1~6. <code>#</code> 은 숨고, 쓰는 줄 왼쪽 여백에 <b>H1</b> 같은 표시만 보입니다.</li>
+        <li><kbd>⌘</kbd> <kbd>1</kbd> ~ <kbd>⌘</kbd> <kbd>6</kbd> 로 바꾸고, 같은 키를 한 번 더 누르면 본문으로 돌아갑니다.</li>
+        <li>제목 맨 앞에서 <kbd>⌫</kbd> 를 누르면 본문이 됩니다.</li>
+        <li>노트 제목에는 <code>/</code> 도 쓸 수 있습니다(<code>10/16 Brain Dump</code>).</li>
+      </ul>
+    </section>
+
+    <section id="style">
+      <h2>글자 모양</h2>
+      <p>글자를 고르고 단축키를 누르거나, 기호로 감싸 칩니다. 커서가 떠나면 기호는 숨고 모양만 남습니다.</p>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>모양</th><th>치는 법</th><th>단축키</th></tr>
+        <tr><td><b>굵게</b></td><td><code>**글**</code></td><td><kbd>⌘</kbd> <kbd>B</kbd></td></tr>
+        <tr><td><i>기울임</i></td><td><code>*글*</code></td><td><kbd>⌘</kbd> <kbd>I</kbd></td></tr>
+        <tr><td><u>밑줄</u></td><td><code>~글~</code> (베어와 같은 물결 하나)</td><td><kbd>⌘</kbd> <kbd>U</kbd></td></tr>
+        <tr><td><mark>형광펜</mark></td><td><code>==글==</code></td><td><kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>H</kbd></td></tr>
+        <tr><td><s>취소선</s></td><td><code>~~글~~</code></td><td><kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>X</kbd></td></tr>
+        <tr><td><code>코드</code></td><td><code>`글`</code></td><td><kbd>⌘</kbd> <kbd>`</kbd></td></tr>
+        <tr><td><a>링크</a></td><td><code>[보일 말](주소)</code></td><td><kbd>⌘</kbd> <kbd>K</kbd></td></tr>
+      </table></div>
+      <p><code>10/16 ~ 10/20</code> 처럼 물결 앞뒤에 빈칸이 있으면 밑줄이 되지 않습니다.</p>
+    </section>
+
+    <section id="bar">
+      <h2>아래 서식 막대<small>베어처럼 화면 아래 가운데에 떠 있습니다</small></h2>
+      <div class="bar" aria-hidden="true">
+        <span><b>H</b></span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3.5"/><path d="M8.5 12.2l2.4 2.4 4.8-5"/></svg></span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M9 6.5h11M9 12h11M9 17.5h11"/><circle cx="4.6" cy="6.5" r=".9" fill="currentColor"/><circle cx="4.6" cy="12" r=".9" fill="currentColor"/><circle cx="4.6" cy="17.5" r=".9" fill="currentColor"/></svg></span>
+        <span class="sep"></span>
+        <span style="font-family:Georgia,serif;font-weight:700;font-size:16px">B</span>
+        <span style="font-family:Georgia,serif;font-style:italic;font-size:16px">I</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4.5l5 5-8.5 8.5H6v-5z"/><path d="M4 21h8" stroke="var(--accent)" stroke-width="2.4"/></svg></span>
+        <span class="sep"></span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M10 14a4.5 4.5 0 006.4 0l3-3a4.5 4.5 0 00-6.4-6.4l-1.2 1.2"/><path d="M14 10a4.5 4.5 0 00-6.4 0l-3 3a4.5 4.5 0 006.4 6.4l1.2-1.2"/></svg></span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><path d="M3.5 9.5h17M3.5 14.5h17M9.5 9.5v10"/></svg></span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="14" rx="2.5"/><circle cx="9" cy="10" r="1.6"/><path d="M20.5 15.5l-4.5-4.5-7.5 8"/></svg></span>
+        <span>⋮</span>
+      </div>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>단추</th><th>들어 있는 것</th></tr>
+        <tr><td><b>H</b> ▾</td><td>본문 · 제목 1~4</td></tr>
+        <tr><td>체크 칸</td><td>할 일 만들기 · 체크</td></tr>
+        <tr><td>목록 ▾</td><td>글머리 목록 · 번호 목록 · 인용 · 들여쓰기 · 내어쓰기</td></tr>
+        <tr><td><b>B</b> · <i>I</i></td><td>굵게 · 기울임</td></tr>
+        <tr><td>형광펜 ▾</td><td>형광펜 · 밑줄 · 취소선 · 코드</td></tr>
+        <tr><td>링크 · 표 · 사진</td><td>웹 링크 · 표 넣기 · 사진 올리기(붙여 넣거나 끌어 놓아도 됩니다)</td></tr>
+        <tr><td>⋮</td><td>노트 잇기 · 코드 블록 · 구분선 · 템플릿 · 찾기·바꾸기</td></tr>
+      </table></div>
+      <p>폰에서는 ▾ 표시를 빼고 단추만 한 줄로 보여 줍니다.</p>
+    </section>
+
+    <section id="blocks">
+      <h2>인용 · 표 · 코드</h2>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>무엇</th><th>치는 법</th></tr>
+        <tr><td>인용</td><td><code>&gt; 글</code></td></tr>
+        <tr><td>콜아웃</td><td><code>&gt; [!note] 제목</code> · note · tip · warning 등</td></tr>
+        <tr><td>구분선</td><td><code>---</code></td></tr>
+        <tr><td>표</td><td><code>| 항목 | 내용 |</code> (서식 막대의 표 단추가 틀을 넣어 줍니다)</td></tr>
+        <tr><td>코드 블록</td><td><code>```</code> 로 위아래를 감쌉니다. js · python · css · html · json 은 색이 들어갑니다.</td></tr>
+        <tr><td>사진</td><td>붙여 넣기 · 끌어 놓기 · 서식 막대의 사진 단추</td></tr>
+      </table></div>
+    </section>
+
+    <section id="link">
+      <h2>노트 잇기 · 태그<small>옵시디언처럼</small></h2>
+      <ul class="plain">
+        <li><code>[[노트 이름]]</code> 으로 다른 노트를 잇습니다. <code>[[</code> 만 쳐도 목록이 뜹니다. <code>[[노트#제목]]</code> · <code>[[노트|보일 말]]</code> 도 됩니다.</li>
+        <li><code>![[노트]]</code> 는 그 노트를 끼워 넣어 보여 줍니다.</li>
+        <li><b>정보 → 백링크</b>: 이 노트를 가리키는 노트와, 이름만 나오는 노트(누르면 링크 걸기).</li>
+        <li>노트 이름을 바꾸면 다른 노트의 링크도 같이 고칩니다.</li>
+        <li>태그는 <code>#태그</code> · <code>#상위/하위</code> · 빈칸이 있으면 <code>#여러 단어#</code>.</li>
+        <li>쓰는 줄에서 링크를 열 때는 <kbd>⌘</kbd> 를 누른 채 누릅니다.</li>
+      </ul>
+    </section>
+
+    <section id="daily">
+      <h2>일기 · 달력</h2>
+      <ul class="plain">
+        <li>달력 위 <b>회사 | 블로그</b> 를 고르고 날짜를 한 번 누르면 그날 일정, 한 번 더 누르면 그 종류의 일기가 열립니다. <kbd>⌥</kbd> <kbd>D</kbd> 는 오늘 일기.</li>
+        <li>날짜 밑 점: 빨강 회사 · 파랑 블로그 · 회색 iCloud 일정.</li>
+        <li>iCloud 캘린더는 설정 → 연결에서 애플 <b>앱 전용 암호</b>로 붙입니다(애플 비밀번호 자체는 넣지 않습니다).</li>
+        <li>일기 틀은 템플릿 폴더의 노트를 고르면 되고, <code>{{일정}}</code> 자리에 그날 일정이 들어갑니다.</li>
+      </ul>
+      <h2>폴더 자동 정리</h2>
+      <ul class="plain">
+        <li>노트 제목에 폴더 이름이 들어가면(예: <b>10/18 Brain Dump</b>) 그 폴더로 저절로 옮깁니다.</li>
+        <li>폴더 이름이 두 개 이상 들어가면 어디로 넣을지 묻습니다. 일기·첨부·템플릿 폴더는 빼고, 이미 맞는 폴더에 있으면 그대로 둡니다.</li>
+      </ul>
+      <h2>블록 잡고 오른쪽 클릭</h2>
+      <ul class="plain">
+        <li>Google·네이버·유튜브에서 검색, 노트에서 찾기, <b>노트 링크로 만들기</b>(없으면 누를 때 새로 만듦), 검색 링크 걸기.</li>
+        <li><b>Claude에게 묻기</b>: 고른 글을 claude.ai 작은 창에 넣어 엽니다. API 가 아니라 내 claude.ai 구독으로 답하고, 노트 창 옆에 따로 뜹니다. claude.ai 에 로그인돼 있어야 합니다.</li>
+      </ul>
+    </section>
+
+    <section id="find">
+      <h2>찾기</h2>
+      <p><kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>F</kbd> 모든 노트에서, <kbd>⌘</kbd> <kbd>F</kbd> 이 노트에서. 왼쪽에서 고른 곳(폴더·태그) 안에서 찾습니다.</p>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>검색어</th><th>뜻</th></tr>
+        <tr><td><code>낱말 낱말</code></td><td>둘 다 들어 있는 노트</td></tr>
+        <tr><td><code>"붙은 말"</code></td><td>그대로 붙어 있는 것</td></tr>
+        <tr><td><code>-낱말</code></td><td>빼기</td></tr>
+        <tr><td><code>#태그</code></td><td>태그(하위 포함)</td></tr>
+        <tr><td><code>folder:폴더</code></td><td>폴더 안</td></tr>
+        <tr><td><code>@todo</code> · <code>@done</code></td><td>할 일 남음 · 끝낸 할 일</td></tr>
+        <tr><td><code>@today</code> · <code>@yesterday</code> · <code>@last7days</code></td><td>기간</td></tr>
+        <tr><td><code>@date(2026-10)</code></td><td>그 달(또는 날)</td></tr>
+        <tr><td><code>@pinned</code> · <code>@untagged</code> · <code>@images</code></td><td>고정 · 태그 없음 · 사진 있음</td></tr>
+        <tr><td><code>@archived</code></td><td>보관함까지</td></tr>
+      </table></div>
+    </section>
+
+    <section id="keys">
+      <h2>단축키 모음</h2>
+      <div class="tbl-wrap"><table class="tbl">
+        <tr><th>키</th><th>하는 일</th></tr>
+        <tr><td><kbd>⌥</kbd> <kbd>N</kbd></td><td>새 노트</td></tr>
+        <tr><td><kbd>⌥</kbd> <kbd>D</kbd></td><td>오늘 일기</td></tr>
+        <tr><td><kbd>⌘</kbd> <kbd>O</kbd></td><td>빠른 열기(없으면 만들기)</td></tr>
+        <tr><td><kbd>⌘</kbd> <kbd>P</kbd></td><td>명령 찾기</td></tr>
+        <tr><td><kbd>⌘</kbd> <kbd>E</kbd></td><td>읽기 ↔ 편집</td></tr>
+        <tr><td><kbd>⌘</kbd> <kbd>\</kbd></td><td>집중 모드</td></tr>
+        <tr><td><kbd>⌘</kbd> <kbd>1</kbd> ~ <kbd>6</kbd></td><td>제목 1~6</td></tr>
+        <tr><td><kbd>⌘</kbd> <kbd>B</kbd> · <kbd>I</kbd> · <kbd>U</kbd></td><td>굵게 · 기울임 · 밑줄</td></tr>
+        <tr><td><kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>H</kbd> · <kbd>X</kbd></td><td>형광펜 · 취소선</td></tr>
+        <tr><td><kbd>⌘</kbd> <kbd>K</kbd></td><td>링크</td></tr>
+        <tr><td><kbd>⌘</kbd> <kbd>⏎</kbd></td><td>할 일 칸 · 체크</td></tr>
+        <tr><td><kbd>Tab</kbd> · <kbd>⇧</kbd> <kbd>Tab</kbd></td><td>들여쓰기 · 내어쓰기</td></tr>
+        <tr><td><kbd>⌘</kbd> <kbd>]</kbd> · <kbd>⌘</kbd> <kbd>[</kbd></td><td>들여쓰기 · 내어쓰기(여러 줄)</td></tr>
+        <tr><td><kbd>⇧</kbd> <kbd>⏎</kbd></td><td>항목 안에서 줄만 바꾸기</td></tr>
+      </table></div>
+    </section>
+
+    <section id="move">
+      <h2>베어에서 옮겨 오기</h2>
+      <ul class="plain">
+        <li>베어에서 <b>파일 → 메모 백업…</b>(또는 설정 → 일반 → 노트 백업)으로 <code>.bear2bk</code> 를 만듭니다.</li>
+        <li>노트 왼쪽 아래 <b>가져오기</b>에 끌어 놓습니다. 넣을 폴더 이름을 정할 수 있습니다.</li>
+        <li>태그 · 고정 · 보관 · 만든 날 · 사진이 그대로 오고, 휴지통 노트는 건너뜁니다. 제목의 <code>/</code> 도 그대로입니다.</li>
+        <li>옵시디언 보관함은 zip 으로 묶어 끌어 놓으면 폴더째 들어옵니다.</li>
+      </ul>
+    </section>
+
+    <section id="claude">
+      <h2>Claude 연결</h2>
+      <ul class="plain">
+        <li>claude.ai → 사용자 지정 → 커넥터 → <b>커스텀 커넥터 추가</b> → 주소 <code>https://notes.musicits.com/mcp</code>.</li>
+        <li>[연결] → 구글 메일 확인 → 노트 로그인 → <b>허락</b>.</li>
+        <li>그 뒤로는 "이번 주 Brain Dump 정리해줘", "오늘 일기에 이거 덧붙여줘" 처럼 말하면 됩니다. Claude 가 고친 것도 기록에 남습니다.</li>
+      </ul>
+    </section>
+
+    <section id="safe">
+      <h2>기록 · 백업 · 업데이트</h2>
+      <div class="grid2">
+        <div class="card"><h4>기록</h4><p>정보 → 기록. 고치기 전 내용이 노트마다 200판까지 남습니다.</p></div>
+        <div class="card"><h4>휴지통</h4><p>비우기 전까지 되살릴 수 있습니다.</p></div>
+        <div class="card"><h4>백업</h4><p>나스가 새벽 4시마다 zip 으로 남깁니다. 14일은 날마다, 그 뒤는 달마다 12달.</p></div>
+        <div class="card"><h4>업데이트</h4><p>왼쪽 아래가 '설정 · 새 판' 이 되면 설정 → 백업·업데이트 → [업데이트]. 새벽에 알아서 받기도 합니다.</p></div>
+      </div>
+    </section>
+  </main>
+</div>
+</body>
+</html>
