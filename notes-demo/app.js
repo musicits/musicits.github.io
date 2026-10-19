@@ -52,6 +52,12 @@ function debounce(fn, ms) {
   let t; const f = (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); };
   f.flush = (...a) => { clearTimeout(t); return fn(...a); }; f.cancel = () => clearTimeout(t); return f;
 }
+// 한글 조합 중 엔터: 크롬은 조합 중 keydown 뒤에 마지막 글자가 확정되고(포커스를 옮기면 그 글자가 따라간다), 사파리는 확정 뒤에 keyCode 229 keydown 이 온다 — 확정을 기다렸다 한다
+function afterIME(e, go) {
+  if (e.isComposing) { e.target.addEventListener('compositionend', () => setTimeout(go), {once: true}); return; }
+  if (e.keyCode == 229) { setTimeout(go); return; }
+  go();
+}
 let toastT;
 function toast(msg, ms = 2400) {
   let el = $('#toast');
@@ -736,7 +742,7 @@ const doSearch = debounce(async () => {
 }, 220);
 $('#q').addEventListener('input', doSearch);
 $('#q').addEventListener('keydown', e => {
-  if (e.key == 'Enter') { const f = $('#items .it'); if (f) f.click(); }
+  if (e.key == 'Enter') afterIME(e, async () => { await doSearch.flush(); const f = $('#items .it'); if (f) f.click(); });
   if (e.key == 'Escape') { $('#q').value = ''; doSearch(); showFind(false); $('#q').blur(); }
 });
 $('#sort').value = P.sort;
@@ -1013,7 +1019,10 @@ function foldersForTitle(title, cur) {
   return hits.sort((a, b) => b.split('/').pop().length - a.split('/').pop().length);
 }
 $('#title').addEventListener('keydown', e => {
-  if (e.key == 'Enter' || (e.key == 'ArrowDown' && !e.isComposing)) { e.preventDefault(); renameFromTitle(); ED.gotoPos(0); }
+  if (e.key == 'Enter' || (e.key == 'ArrowDown' && !e.isComposing)) {
+    if (!e.isComposing) e.preventDefault();
+    afterIME(e, () => { renameFromTitle(); ED.gotoPos(0); });
+  }
 });
 $('#title').addEventListener('blur', () => renameFromTitle());
 
@@ -1554,7 +1563,7 @@ function promptDlg(title, label, value = '') {
       foot: '<button class="btn" data-no>취소</button><button class="btn primary" data-ok>확인</button>', onClose: () => res(null)});
     const inp = d.el.querySelector('#pIn'); inp.focus(); inp.setSelectionRange(inp.value.length, inp.value.length);
     const ok = () => { res(inp.value.trim()); d.close(inp.value.trim()); };
-    inp.addEventListener('keydown', e => { if (e.key == 'Enter' && !e.isComposing) ok(); });
+    inp.addEventListener('keydown', e => { if (e.key == 'Enter') afterIME(e, ok); });
     d.el.querySelector('[data-no]').onclick = () => d.close();
     d.el.querySelector('[data-ok]').onclick = ok;
   });
@@ -1578,10 +1587,10 @@ function picker({placeholder, items, render, onPick, empty, extra}) {
   };
   inp.addEventListener('input', () => { sel = 0; draw(); });
   inp.addEventListener('keydown', e => {
+    if (e.key == 'Enter') { if (!e.isComposing) e.preventDefault(); afterIME(e, () => { if (shown[sel] && inp.isConnected) { d.close(); onPick(shown[sel], e); } }); return; }
     if (e.isComposing) return;
     if (e.key == 'ArrowDown') { e.preventDefault(); sel = Math.min(sel + 1, shown.length - 1); draw(); }
     else if (e.key == 'ArrowUp') { e.preventDefault(); sel = Math.max(sel - 1, 0); draw(); }
-    else if (e.key == 'Enter') { e.preventDefault(); if (shown[sel]) { d.close(); onPick(shown[sel], e); } }
   });
   list.addEventListener('click', e => { const b = e.target.closest('[data-i]'); if (b) { d.close(); onPick(shown[+b.dataset.i], e); } });
   draw(); inp.focus();
