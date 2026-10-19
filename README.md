@@ -3,6 +3,7 @@
 `https://tools.musicits.com/` 루트를 서빙하는 저장소입니다.
 
 - `index.html` — 도구 모음 랜딩 페이지 (빌드 없는 단일 파일)
+- `notes-demo/` — 뮤직잇츠 노트 게스트판(저장 안 됨). musicits-tools 저장소 `뮤직잇츠 노트/게스트판/만들기.py` 가 만든 것(여기서 고치지 않는다)
 - `ai/index.html` — AI 사용량 벤치마크 공개판. musicits-tools 저장소 `AI 사용량 벤치마크/만들기.py` 가 만든 `공개/index.html` 을 복사해 둔 것(여기서 고치지 않는다)
 - `og-image.png` — 카톡·SNS 공유 썸네일 (1200×630)
 - `logo.png` — 머리줄 music ITs 로고 (도구들과 같은 파일)
