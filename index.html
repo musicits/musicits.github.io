@@ -13,13 +13,19 @@
     <!-- rel="me" 는 "이 사이트와 저 블로그는 같은 사람"임을 밝히는 표준 표기입니다. -->
     <link rel="me" href="https://blog.naver.com/musicits" />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Zilla+Slab:wght@700&display=swap"
+    />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
     />
     <meta name="color-scheme" content="light dark" />
-    <meta name="theme-color" content="#F7F8FA" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0B0D11" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#F3F0EA" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#14110E" media="(prefers-color-scheme: dark)" />
     <meta name="naver-site-verification" content="9d24f56b7b867cc05a1bf17733ef242f072229c0" />
 
     <meta property="og:type" content="website" />
@@ -37,7 +43,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <!-- 가로로 긴 로고를 탭 아이콘에 쓰면 16px 에서 뭉개집니다 -->
     <link rel="icon" href="./icon.svg" type="image/svg+xml" />
-    <link rel="apple-touch-icon" href="./logo.png" />
+    <link rel="apple-touch-icon" href="./icon-512.png" />
 
     <!--
       도구를 하나 더 만들면 세 곳을 같이 고칩니다.
@@ -138,84 +144,102 @@
     </script>
 
     <style>
-      /* ───────────────────────────────────────────────
-         색과 재질은 코덱 매치와 같은 값을 씁니다.
-         도구 화면과 이 화면이 한 벌로 보이게 하려는 것이니,
-         토큰을 고칠 때는 도구 쪽도 같이 고쳐야 합니다.
-      ─────────────────────────────────────────────── */
+      /* ───────────────────────────────
+         색과 글꼴은 musicits.com 포트폴리오에서 가지고 옵니다.
+         크림(#F3F0EA), 차콜(#14110E), 금색(#E6A94A) 세 가지만 씁니다.
+         AI 사용량 공개판(/ai/)이 이 결을 먼저 쓰고 있습니다.
+      ─────────────────────────────── */
       :root {
-        --main: #2c323c;
-        --main-deep: #171b21;
-        --pool-a: #cdd9e6;
-        --pool-b: #cfe3f2;
-        --canvas: #ffffff;
-        --surface: #f1f3f7;
-        --surface-soft: #f7f8fa;
-        --line: #e3e6ec;
-        --line-strong: #c7ccd6;
-        --ink: #15181e;
-        --slate: #434955;
-        --steel: #636a77;
-        --stone: #8e95a1;
+        --gold: #e6a94a;
+        --gold-hi: #f0bc66;
+        --gold-lo: #d9993a;
+        --main: #e6a94a;
+        --main-deep: #94600f;
+        --canvas: #fbfaf6;
+        --surface: #eae5dc;
+        --surface-soft: #f3f0ea;
+        --line: rgba(23, 19, 14, .12);
+        --line-strong: rgba(23, 19, 14, .22);
+        --ink: #17130e;
+        --slate: #3f372e;
+        --steel: #675e52;
+        --stone: #8e8476;
+        --band: #14110e;
+        --band-ink: #f2ece2;
         --r-sm: 8px;
         --r-md: 10px;
         --r-lg: 16px;
-        --r-outer: 24px;
-        --glass: saturate(180%) blur(26px);
-        --glass-face: rgba(247, 248, 250, .74);
-        --glass-hairline: rgba(20, 35, 60, .1);
-        --glass-rim: inset 0 1px 0 rgba(255, 255, 255, .92), inset 0 0 0 .5px rgba(20, 35, 60, .14), 0 0 0 .5px rgba(20, 35, 60, .1);
-        --glass-sheen: rgba(255, 255, 255, .55);
-        --glass-drop: 0 24px 48px -28px rgba(20, 35, 60, .3), 0 2px 8px -4px rgba(20, 35, 60, .1);
-        --tint: color-mix(in srgb, var(--main) 12%, transparent);
+        --r-outer: 20px;
+        --f-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+        --f-slab: "Zilla Slab", Georgia, serif;
+        --f-hand: "Mr Dafoe", cursive;
+        --glass: saturate(120%) blur(14px);
+        --glass-face: color-mix(in srgb, var(--surface-soft) 88%, transparent);
+        --glass-hairline: var(--line);
+        --glass-rim: inset 0 1px 0 rgba(255, 255, 255, .55);
+        --glass-sheen: rgba(255, 255, 255, .62);
+        --glass-drop: 0 18px 36px -26px rgba(23, 19, 14, .3);
+        --tint: color-mix(in srgb, var(--gold) 16%, transparent);
+        --on-gold: #1b1309;
+        --vinyl: #14110e;
+        --groove: #1f1a15;
+        --rim: rgba(0, 0, 0, 0);
         color-scheme: light;
       }
 
       @media (prefers-color-scheme: dark) {
         :root:not([data-theme="light"]) {
-          --main: #3dd6a6;
-          --main-deep: #8ff0cf;
-          --pool-a: #177a62;
-          --pool-b: #22557f;
-          --canvas: #161920;
-          --surface: #1d2129;
-          --surface-soft: #0b0d11;
-          --line: #2a2f38;
-          --line-strong: #3e4451;
-          --ink: #eceef2;
-          --slate: #bac0cb;
-          --steel: #9199a6;
-          --stone: #6f7784;
-          --glass-face: color-mix(in srgb, var(--main) 5%, rgba(20, 23, 29, .74));
-          --glass-hairline: rgba(255, 255, 255, .1);
-          --glass-rim: inset 0 1px 0 rgba(255, 255, 255, .18), inset 0 0 0 .5px rgba(255, 255, 255, .06), 0 0 0 .5px rgba(0, 0, 0, .45);
-          --glass-sheen: rgba(255, 255, 255, .05);
-          --glass-drop: 0 24px 48px -28px rgba(0, 0, 0, .7), 0 2px 8px -4px rgba(0, 0, 0, .4);
-          --tint: color-mix(in srgb, var(--main) 16%, transparent);
+        --main: #e6a94a;
+          --main-deep: #f0bc66;
+          --canvas: #1c1814;
+          --surface: #25201a;
+          --surface-soft: #14110e;
+          --line: rgba(242, 236, 226, .10);
+          --line-strong: rgba(242, 236, 226, .20);
+          --ink: #f2ece2;
+          --slate: #cbc1b2;
+          --steel: #a99e8e;
+          --stone: #857a6c;
+          --band: #0c0a08;
+          --band-ink: #f2ece2;
+          --glass-face: color-mix(in srgb, var(--surface-soft) 88%, transparent);
+          --glass-hairline: var(--line);
+          --glass-rim: inset 0 1px 0 rgba(242, 236, 226, .07);
+          --glass-sheen: rgba(242, 236, 226, .08);
+          --glass-drop: 0 18px 36px -26px rgba(0, 0, 0, .7);
+          --tint: color-mix(in srgb, var(--gold) 20%, transparent);
+          --on-gold: #1b1309;
+          --vinyl: #0a0907;
+          --groove: #2a241e;
+          --rim: rgba(242, 236, 226, .14);
           color-scheme: dark;
         }
       }
 
       :root[data-theme="dark"] {
-        --main: #cdd4e0;
-        --main-deep: #eceef2;
-        --pool-a: #2b3645;
-        --pool-b: #24384a;
-        --canvas: #161920;
-        --surface: #1d2129;
-        --surface-soft: #0b0d11;
-        --line: #2a2f38;
-        --line-strong: #3e4451;
-        --ink: #eceef2;
-        --slate: #bac0cb;
-        --steel: #9199a6;
-        --stone: #6f7784;
-        --glass-face: rgba(20, 23, 29, .74);
-        --glass-hairline: rgba(255, 255, 255, .1);
-        --glass-rim: inset 0 1px 0 rgba(255, 255, 255, .18), inset 0 0 0 .5px rgba(255, 255, 255, .06), 0 0 0 .5px rgba(0, 0, 0, .45);
-        --glass-sheen: rgba(255, 255, 255, .05);
-        --glass-drop: 0 24px 48px -28px rgba(0, 0, 0, .7), 0 2px 8px -4px rgba(0, 0, 0, .4);
-        --tint: color-mix(in srgb, var(--main) 16%, transparent);
+        --main: #e6a94a;
+        --main-deep: #f0bc66;
+        --canvas: #1c1814;
+        --surface: #25201a;
+        --surface-soft: #14110e;
+        --line: rgba(242, 236, 226, .10);
+        --line-strong: rgba(242, 236, 226, .20);
+        --ink: #f2ece2;
+        --slate: #cbc1b2;
+        --steel: #a99e8e;
+        --stone: #857a6c;
+        --band: #0c0a08;
+        --band-ink: #f2ece2;
+        --glass-face: color-mix(in srgb, var(--surface-soft) 88%, transparent);
+        --glass-hairline: var(--line);
+        --glass-rim: inset 0 1px 0 rgba(242, 236, 226, .07);
+        --glass-sheen: rgba(242, 236, 226, .08);
+        --glass-drop: 0 18px 36px -26px rgba(0, 0, 0, .7);
+        --tint: color-mix(in srgb, var(--gold) 20%, transparent);
+        --on-gold: #1b1309;
+        --vinyl: #0a0907;
+        --groove: #2a241e;
+        --rim: rgba(242, 236, 226, .14);
         color-scheme: dark;
       }
 
@@ -232,10 +256,8 @@
         -webkit-font-smoothing: antialiased;
         -webkit-tap-highlight-color: transparent;
         background:
-          radial-gradient(900px 620px at 6% -8%, color-mix(in srgb, var(--pool-a) 46%, transparent), transparent 62%),
-          radial-gradient(780px 660px at 100% 12%, color-mix(in srgb, var(--pool-b) 34%, transparent), transparent 58%),
-          radial-gradient(700px 520px at 38% 58%, color-mix(in srgb, var(--main) 10%, transparent), transparent 64%),
-          radial-gradient(900px 700px at 60% 114%, color-mix(in srgb, var(--pool-a) 22%, transparent), transparent 60%),
+          radial-gradient(860px 560px at 100% -8%, color-mix(in srgb, var(--gold) 13%, transparent), transparent 62%),
+          radial-gradient(720px 520px at 0% 104%, color-mix(in srgb, var(--surface) 72%, transparent), transparent 60%),
           var(--surface-soft);
         background-attachment: fixed;
         min-height: 100dvh;
@@ -274,9 +296,12 @@
       }
 
       .topbar .logo { height: 26px; width: auto; display: block; flex: 0 0 auto; }
-      :root[data-theme="dark"] .topbar .logo { filter: invert(1); }
+      .topbar .logo-d { display: none; }
+      :root[data-theme="dark"] .topbar .logo-l { display: none; }
+      :root[data-theme="dark"] .topbar .logo-d { display: block; }
       @media (prefers-color-scheme: dark) {
-        :root:not([data-theme="light"]) .topbar .logo { filter: invert(1); }
+        :root:not([data-theme="light"]) .topbar .logo-l { display: none; }
+        :root:not([data-theme="light"]) .topbar .logo-d { display: block; }
       }
 
       .topbar h1 {
@@ -376,7 +401,13 @@
       }
 
       /* ── 첫 인사 ── */
-      .intro { padding: 34px 32px 30px; text-align: center; }
+      .intro {
+        padding: 32px 34px 30px;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 280px);
+        gap: 26px 40px;
+        align-items: center;
+      }
 
       .intro h2 {
         margin: 0 0 10px;
@@ -387,9 +418,81 @@
       }
 
       .intro h2 em { font-style: normal; color: var(--main-deep); }
-      .intro p { margin: 0 auto; max-width: 42em; color: var(--steel); font-size: 14px; }
+      .intro p { margin: 0; max-width: 40em; color: var(--steel); font-size: 14px; }
 
-      .marks { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-top: 18px; }
+      .marks { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
+
+      /* LP 판 — 블로그 배너·포트폴리오와 같은 판입니다 */
+      .disc { position: relative; width: min(100%, 280px); aspect-ratio: 1; margin-inline: auto; }
+      .disc .spin { position: absolute; inset: 0; }
+
+      .disc .rec {
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        background:
+          radial-gradient(circle at 50% 50%, transparent 0 33%, rgba(255, 255, 255, .035) 33.4% 34%, transparent 34.5%),
+          repeating-radial-gradient(circle at 50% 50%, var(--vinyl) 0 2px, var(--groove) 2.6px 3px),
+          var(--vinyl);
+        box-shadow: 0 30px 60px -18px rgba(20, 17, 14, .45), 0 0 0 1px var(--rim), inset 0 0 0 1px rgba(0, 0, 0, .4);
+      }
+
+      .disc .rec::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        background: conic-gradient(from 210deg, transparent 0 20deg, rgba(255, 255, 255, .09) 40deg, transparent 70deg 200deg, rgba(255, 255, 255, .06) 225deg, transparent 250deg);
+      }
+
+      /* 라벨 안은 가운데 구멍을 기준으로 위에 로고, 아래에 글자를 둡니다.
+         구멍이 판 한가운데에서 비치면 얻지 않아 위치를 직접 잡습니다. */
+      .disc .label {
+        position: absolute;
+        inset: 30%;
+        border-radius: 50%;
+        background: radial-gradient(circle at 40% 35%, var(--gold-hi), var(--gold) 55%, var(--gold-lo));
+        color: var(--on-gold);
+      }
+
+      .disc .label img {
+        position: absolute;
+        left: 22%;
+        top: 19%;
+        width: 56%;
+        height: auto;
+        filter: brightness(0) opacity(.92);
+      }
+
+      .disc .label .hole {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 7.5%;
+        aspect-ratio: 1;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        background: var(--surface-soft);
+        box-shadow: inset 0 1px 2px rgba(23, 19, 14, .55);
+      }
+
+      .disc .label .big,
+      .disc .label .rpm {
+        position: absolute;
+        left: 0;
+        right: 0;
+        text-align: center;
+        font-family: var(--f-mono);
+        line-height: 1.4;
+      }
+
+      .disc .label .big { top: 59%; font-size: 10px; letter-spacing: .1em; font-weight: 500; }
+      .disc .label .rpm { top: 75%; font-size: 7.5px; letter-spacing: .16em; }
+
+      @media (prefers-reduced-motion: no-preference) {
+        .disc .spin { animation: spin 24s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+      }
 
       /* ── 도구 카드 ── */
       .tools-label {
@@ -429,33 +532,29 @@
         transition: transform .2s ease, border-color .2s ease;
       }
 
-      .tool:hover,
-      .tool:focus-within { transform: translateY(-2px); border-color: color-mix(in srgb, var(--main) 40%, transparent); }
+      .tool:focus-within { border-color: color-mix(in srgb, var(--main) 40%, transparent); }
 
-      /* 도구마다 제 색을 쓴다. 카드 안의 아이콘·[열기]·테두리가 그 색으로 바뀐다. */
-      .tool--codec { --main: #0e9f7a; --main-deep: #0a7059; }
-      .tool--mockup { --main: #7b5cf0; --main-deep: #5a3ed1; }
-      .tool--cover { --main: #dc3f5c; --main-deep: #b32744; }
-      .tool--exam { --main: #0e7c8a; --main-deep: #0a5f6b; }
-      .tool--ai { --main: #a8741a; --main-deep: #94600f; }
+      @media (hover: hover) {
+        .tool:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--main) 40%, transparent); }
+        .tool:hover .tool__no { color: var(--main-deep); }
+      }
+
+      /* 도구는 번호로 구분합니다. 카드마다 다른 색을 쓰지 않습니다. */
       .tool--wide { grid-column: 1 / -1; }
       .tool--wide p { max-width: 72ch; }
 
-      :root[data-theme="dark"] .tool--codec { --main: #3dd6a6; --main-deep: #8ff0cf; }
-      :root[data-theme="dark"] .tool--mockup { --main: #a58cff; --main-deep: #c9b8ff; }
-      :root[data-theme="dark"] .tool--cover { --main: #ff8093; --main-deep: #ffb3bf; }
-      :root[data-theme="dark"] .tool--exam { --main: #4fb3c4; --main-deep: #8fd8e4; }
-      :root[data-theme="dark"] .tool--ai { --main: #e6a94a; --main-deep: #f0bc66; }
-
-      @media (prefers-color-scheme: dark) {
-        :root:not([data-theme="light"]) .tool--codec { --main: #3dd6a6; --main-deep: #8ff0cf; }
-        :root:not([data-theme="light"]) .tool--mockup { --main: #a58cff; --main-deep: #c9b8ff; }
-        :root:not([data-theme="light"]) .tool--cover { --main: #ff8093; --main-deep: #ffb3bf; }
-        :root:not([data-theme="light"]) .tool--exam { --main: #4fb3c4; --main-deep: #8fd8e4; }
-        :root:not([data-theme="light"]) .tool--ai { --main: #e6a94a; --main-deep: #f0bc66; }
+      .tool__no {
+        position: absolute;
+        top: 15px;
+        right: 18px;
+        font-family: var(--f-mono);
+        font-size: 10.5px;
+        font-weight: 500;
+        letter-spacing: .14em;
+        color: var(--stone);
       }
 
-      .tool__head { display: flex; align-items: center; gap: 10px; }
+      .tool__head { display: flex; align-items: center; gap: 10px; padding-right: 72px; }
 
       .tool__icon {
         width: 34px;
@@ -516,7 +615,8 @@
 
       /* ── 만든이 ── */
       .maker { margin-top: 12px; padding: 20px 22px; }
-      .maker h2 { margin: 0 0 6px; font-size: 13px; font-weight: 700; color: var(--steel); }
+      .maker h2 { margin: 0 0 6px; font-family: var(--f-slab); font-size: 15px; font-weight: 700;
+        letter-spacing: .01em; color: var(--ink); }
       .maker p { margin: 0; font-size: 12.5px; color: var(--steel); }
       .maker p b { color: var(--ink); font-weight: 700; }
       .maker a { color: var(--main-deep); font-weight: 600; text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--main) 40%, transparent); }
@@ -534,6 +634,7 @@
         font-size: 11.5px;
       }
 
+      footer p { font-family: var(--f-mono); font-size: 11px; letter-spacing: .08em; }
       footer a { color: var(--stone); text-decoration: none; }
       footer a:hover { color: var(--main-deep); }
       footer .links { display: flex; gap: 12px; }
@@ -545,7 +646,8 @@
         .topbar p { font-size: 11.5px; order: 3; flex: 1 0 100%; }
         .topbar .right { order: 2; }
         .page { padding: 16px 12px 32px; }
-        .intro { padding: 26px 18px 24px; }
+        .intro { padding: 26px 18px 24px; grid-template-columns: minmax(0, 1fr); gap: 22px; }
+        .disc { width: min(58vw, 220px); }
         .maker { padding: 18px; }
       }
 
@@ -570,7 +672,8 @@
   </head>
   <body>
     <header class="topbar">
-      <img class="logo" src="./logo.png" alt="music ITs" width="1471" height="353" />
+      <img class="logo logo-l" src="./logo-light.png" alt="music ITs" width="700" height="137" />
+      <img class="logo logo-d" src="./logo-dark.png" alt="music ITs" width="700" height="137" />
       <h1>웹 도구 모음</h1>
       <p>쭈뉘의 뮤직잇츠가 만든 도구들</p>
       <div class="right">
@@ -585,15 +688,28 @@
 
     <div class="page">
       <section class="panel intro">
-        <h2>오디오와 IT 기기를 다루다<br /><em>필요해서 직접 만든 도구들</em></h2>
-        <p>
-          블루투스 코덱 호환 확인부터 스크린샷 목업, 매거진 표지, 자격증 문제풀이까지.<br />
-          이걸 만들며 AI 를 얼마나 썼는지도 기록해 둡니다.<br />
-          설치 없이 브라우저에서 바로 씁니다.
-        </p>
-        <div class="marks">
-          <span class="chip">휴대폰에서도 그대로</span>
-          <span class="chip">사진·기록은 브라우저 안에만</span>
+        <div>
+          <h2>오디오와 IT 기기를 다루다<br /><em>필요해서 직접 만든 도구들</em></h2>
+          <p>
+            블루투스 코덱 호환 확인부터 스크린샷 목업, 매거진 표지, 자격증 문제풀이까지.
+            이걸 만들며 AI 를 얼마나 썼는지도 기록해 둡니다.
+            설치 없이 브라우저에서 바로 씁니다.
+          </p>
+          <div class="marks">
+            <span class="chip">휴대폰에서도 그대로</span>
+            <span class="chip">사진·기록은 브라우저 안에만</span>
+          </div>
+        </div>
+        <div class="disc" aria-hidden="true">
+          <div class="spin">
+            <div class="rec"></div>
+            <div class="label">
+              <img src="./logo-light.png" alt="" width="700" height="137" />
+              <span class="hole"></span>
+              <span class="big">SIDE A</span>
+              <span class="rpm">33⅓ RPM</span>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -604,6 +720,7 @@
 
       <ul class="tools">
         <li class="tool tool--codec">
+          <span class="tool__no" aria-hidden="true">TRACK 01</span>
           <div class="tool__head">
             <span class="tool__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -626,6 +743,7 @@
         </li>
 
         <li class="tool tool--mockup">
+          <span class="tool__no" aria-hidden="true">TRACK 02</span>
           <div class="tool__head">
             <span class="tool__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -646,6 +764,7 @@
         </li>
 
         <li class="tool tool--cover">
+          <span class="tool__no" aria-hidden="true">TRACK 03</span>
           <div class="tool__head">
             <span class="tool__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -667,6 +786,7 @@
         </li>
 
         <li class="tool tool--exam">
+          <span class="tool__no" aria-hidden="true">TRACK 04</span>
           <div class="tool__head">
             <span class="tool__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -694,6 +814,7 @@
 
       <ul class="tools">
         <li class="tool tool--ai tool--wide">
+          <span class="tool__no" aria-hidden="true">B-SIDE</span>
           <div class="tool__head">
             <span class="tool__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
